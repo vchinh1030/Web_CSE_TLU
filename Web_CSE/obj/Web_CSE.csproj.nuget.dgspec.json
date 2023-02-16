@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj": {}
+    "D:\\DotNET_Repos\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj": {}
   },
   "projects": {
-    "D:\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj": {
+    "D:\\DotNET_Repos\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj",
+        "projectUniqueName": "D:\\DotNET_Repos\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj",
         "projectName": "Web_CSE",
-        "projectPath": "D:\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj",
-        "packagesPath": "C:\\Users\\chinh\\.nuget\\packages\\",
-        "outputPath": "D:\\Web_CSE_TLU\\Web_CSE\\obj\\",
+        "projectPath": "D:\\DotNET_Repos\\Web_CSE_TLU\\Web_CSE\\Web_CSE.csproj",
+        "packagesPath": "C:\\Users\\dinhv\\.nuget\\packages\\",
+        "outputPath": "D:\\DotNET_Repos\\Web_CSE_TLU\\Web_CSE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio 2022\\Shared components,tools,and SDKs\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\chinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dinhv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
