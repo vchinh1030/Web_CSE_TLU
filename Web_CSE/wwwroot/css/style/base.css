@@ -213,7 +213,14 @@ footer{
 }
 .footer .footer-desc{
     margin-top: 20px;
-    display: flex;
+    /* float: left; */
     width: 100%;
-    justify-content: left;
+    
+}
+.footer .footer-img{
+    padding-right: 15px;
+}
+.footer .footer-desc p{
+    color: #fff;
+    margin: 10px 10px 0 0;
 }
