@@ -1,33 +1,122 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Web_CSE</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style/base.css" />
 </head>
+
 <body>
+    <div class="top-header">
+        <div class="label">
+            <a href="#">Trường Đại Học Thủy Lợi-TLU</a>
+        </div>
+        <div class="list-login">
+            <span>(+) |</span>
+            <a href="#" class="btn-login">Login</a>
+            <span>| |</span>
+            <span>Ngôn ngữ: </span>
+            <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-vi.png"
+                    alt=""></a>
+            <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-en.png"
+                    alt=""></a>
+        </div>
+        <div class="header-language">
+
+        </div>
+        <div class="search-box">
+            <form action="#" method="post">
+                <input type="text" placeholder="Tìm kiếm" class="search-area">
+                <input type="submit" class="search-btn" value="Tìm">
+            </form>
+        </div>
+    </div>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web_CSE</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+        <div id="header" class="container">
+            <a href="#"><img class="logo-page" src="http://cse.tlu.edu.vn/cse/assets/images/logo.jpg" alt=""></a>
+            <ul class="list-navigation">
+                <li class="sub-nav"><a href="#">TRANG CHỦ</a></li>
+                <li class="sub-nav">
+                    <a href="">GIỚI THIỆU</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Logo khoa CNTT</a></li>
+                        <li><a href="">Lời chào mừng</a></li>
+                        <li><a href="">Tổ chức</a></li>
+                        <li><a href="">Hợp tác</a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
+                </li>
+                <li class="sub-nav">
+                    <a href="">NGHIÊN CỨU KHOA HỌC</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Các đề tài,dự án</a></li>
+                        <li><a href="">Thông tin seminar</a></li>
+                        <li><a href="">Công trình công bố</a></li>
+                        <li><a href="">Các phòng thí nghiệm</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">ĐÀO TẠO</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Đào tạo đại học</a></li>
+                        <li><a href="">Đào tạo sau đại học</a></li>
+                        <li><a href="">Mô tả chương trình đào tạo</a></li>
+                        <li><a href="">Định hướng ngành nghề</a></li>
+                        <li><a href="">Chuẩn đầu ra</a></li>
+                        <li><a href="">Đề cương môn học</a></li>
+
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">BỘ MÔN-TRUNG TÂM</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">CN phần mềm</a></li>
+                        <li><a href="">Hệ thống thông tin</a></li>
+                        <li><a href="">Toán học</a></li>
+                        <li><a href="">Tin học và kỹ thuật tính toán</a></li>
+                        <li><a href="">Tin học</a></li>
+                        <li><a href="">Mạng và an toàn thông tin</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">TUYỂN SINH</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Nhóm ngành CNTT</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">SINH VIÊN</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Tài liệu sinh viên</a></li>
+                        <li><a href="">Tổ tư vấn học tập</a></li>
+                        <li><a href="">Biểu mẫu đồ án tốt nghiệp</a></li>
+                        <li><a href="">Luận văn tốt nghiệp</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">TIN TỨC</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Sự kiện</a></li>
+                        <li><a href="">CSE trên báo</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav">
+                    <a href="">THÔNG BÁO</a>
+                    <ul class="list-child-nav">
+                        <li><a href="">Thông báo</a></li>
+                        <li><a href="">TB đào tạo</a></li>
+                        <li><a href="">Nghiên cứu khoa học</a></li>
+                        <li><a href="">Tuyển dụng</a></li>
+                        <li><a href="">Học bổng</a></li>
+                        <li><a href="">Thông báo khác</a></li>
+                    </ul>
+                </li>
+                <li class="sub-nav"><a href="">LIÊN HỆ</a></li>
+            </ul>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -35,14 +124,72 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Web_CSE - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer border-top text-muted">
+        <div class="container footer-container">
+            <div class="row">
+                <div class="col-md-3 footer-col">
+                    <ul class="footer-menu">
+                        <li><a href="">Giới thiệu</a></li>
+                        <li><a href="">Logo của Khoa CNTT</a></li>
+                        <li><a href="">Lời chào mừng</a></li>
+                        <li><a href="">Tổ chức</a></li>
+                        <li><a href="">Hợp tác liên kết</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <ul class="footer-menu">
+                        <li><a href="">Đào tạo</a></li>
+                        <li><a href="">Mô hình đào tạo</a></li>
+                        <li><a href="">Đào tạo đại học</a></li>
+                        <li><a href="">Định hướng ngành nghề</a></li>
+                        <li><a href="">Đào tạo sau đại học</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <ul class="footer-menu">
+                        <li><a href="">Nghiên cứu khoa học</a></li>
+                        <li><a href="">Thông tin seminar</a></li>
+                        <li><a href="">Các đề tài, dự án</a></li>
+                        <li><a href="">Công trình công bố</a></li>
+                        <li><a href="">Các phòng thí nghiệm</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-col">
+                    <ul class="footer-menu">
+                        <li><a href="">Công nghệ phần mềm</a></li>
+                        <li><a href="">Hệ thống thông tin</a></li>
+                        <li><a href="">Khoa học máy tính</a></li>
+                        <li><a href="">Kỹ thuật máy tính và mạng</a></li>
+                        <li><a href="">Toán học</a></li>
+                        <li><a href="">Trung tâm tin học</a></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
+        <div class="container footer-desc">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                        <img src="http://cse.tlu.edu.vn/portals/0/images/img-01.png" alt="">
+                        <p>
+                            © 2017 Khoa Công nghệ thông tin - Đại học Thủy lợi
+                            <br>
+                            Địa chỉ: nhà C1, Đại học Thủy lợi, 175 Tây Sơn, Đống Đa, Hà Nội. Điện thoại: (+84)-024 3
+                            5632211. Email:
+                            <a class="text-white" href="#">vpkcntt@tlu.edu.vn</a>
+                        </p>
+                    
+                </div>
+
+            </div>
+        </div>
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
