@@ -2,4 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
+.vs/
+.vscode/
+obj/
+bin/
+/Web_CSE/.vs/
