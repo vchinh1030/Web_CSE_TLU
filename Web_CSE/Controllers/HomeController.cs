@@ -20,6 +20,7 @@ namespace Web_CSE.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
