@@ -3,6 +3,7 @@ const modalClose = document.querySelector('.modal-close');
 const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modal-container');
 const fullSizeModal = document.querySelector('.modal-full');
+const loginCancel = document.querySelector('.login-cancel');
 function showModal() {
     modal.classList.add('open');
 }
@@ -20,8 +21,8 @@ for (const btn of loginBtn) {
 };
 
 modalClose.addEventListener('click', hideModal);
-
-modal.addEventListener('click', hideModal)
+loginCancel.addEventListener('click', hideModal); 
+modal.addEventListener('click', hideModal);
 modalContainer.addEventListener('click', function (e) {
     e.stopPropagation();
 })

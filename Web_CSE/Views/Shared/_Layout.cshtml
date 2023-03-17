@@ -20,7 +20,7 @@
         </div>
         <div class="list-login">
             <span>(+) |</span>
-            <button class="btn-login" title="Login">Login</button>
+            <a class="btn-login" title="Login">Login</a>
             <span>| |</span>
             <span>Ngôn ngữ: </span>
             <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-vi.png"
@@ -214,29 +214,27 @@
                 User Log In
             </header>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form  method="post">
                     <div class="form-item login-input">
-                        <label for="login-username" class="label-login">
+                        <label  for="login-username" class="label-login">
                             Username:
                         </label>
                         <input id="login-username" type="text" class="modal-input">
                     </div>
                     <div class="form-item login-input">
-                        <label for="login-password" class="label-login">
+                        <label  for="login-password" class="label-login">
                             Password:
                         </label>
                         <input id="login-password" type="password" class="modal-input">
                     </div>
                     <div class="form-item">
-                        <a href="#" class="login">Login</a>
-                        <a href="#" class="login-cancel">Cancel</a>
+                        <button asp-controller="" asp-action="" class="login">Login</button>
+                        <a class="login-cancel">Cancel</a>
                     </div>
                     <div class="form-item">
                         <input type="checkbox">Remmember Login
                     </div>
-                    <div class="form-item">
-                        <a href="#">Reset Password</a>
-                    </div>
+                  
                 </form>
             </div>
         </div>
