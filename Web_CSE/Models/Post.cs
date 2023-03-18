@@ -19,7 +19,7 @@ public partial class Post
 
     public int CatId { get; set; }
 
-    public byte[] Thumb { get; set; }
+    public string Thumb { get; set; }
 
     public virtual Account Account { get; set; }
 

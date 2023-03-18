@@ -11,11 +11,11 @@ public partial class Account
 
     public string Password { get; set; }
 
-    public int? Phone { get; set; }
+    public string Phone { get; set; }
 
     public string Email { get; set; }
 
-    public byte[] Image { get; set; }
+    public string Image { get; set; }
 
     public string FullName { get; set; }
 

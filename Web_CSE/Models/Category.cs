@@ -9,8 +9,6 @@ public partial class Category
 
     public string CatName { get; set; }
 
-    public byte[] Thumb { get; set; }
-
     public int? Ordering { get; set; }
 
     public int? Parent { get; set; }

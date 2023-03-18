@@ -37,10 +37,11 @@ public partial class CnttCseContext : DbContext
             entity.Property(e => e.FullName)
                 .IsRequired()
                 .HasMaxLength(50);
-            entity.Property(e => e.Image).HasColumnType("image");
+            entity.Property(e => e.Image).HasMaxLength(255);
             entity.Property(e => e.Password)
                 .IsRequired()
                 .HasMaxLength(50);
+            entity.Property(e => e.Phone).HasMaxLength(50);
             entity.Property(e => e.RoleId).HasColumnName("RoleID");
             entity.Property(e => e.UserName)
                 .IsRequired()
@@ -60,7 +61,6 @@ public partial class CnttCseContext : DbContext
             entity.Property(e => e.CatName)
                 .IsRequired()
                 .HasMaxLength(100);
-            entity.Property(e => e.Thumb).HasColumnType("image");
         });
 
         modelBuilder.Entity<Post>(entity =>
@@ -75,7 +75,7 @@ public partial class CnttCseContext : DbContext
             entity.Property(e => e.Describe)
                 .IsRequired()
                 .HasColumnType("text");
-            entity.Property(e => e.Thumb).HasColumnType("image");
+            entity.Property(e => e.Thumb).HasMaxLength(255);
             entity.Property(e => e.Title)
                 .IsRequired()
                 .HasMaxLength(100);
