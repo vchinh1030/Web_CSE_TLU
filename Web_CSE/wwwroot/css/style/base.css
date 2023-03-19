@@ -195,15 +195,34 @@ main {
     min-height: 900px;
     margin-bottom:200px;
 }
+main .add-post,.edit-post,.delete-post,.details-post
+{
+    background-color: #003478;
+    color: #fff;
+    padding: 6px;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+        box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.6);
+}
+main .edit-post{
+    background-color:burlywood;
+}
+main .delete-post{
+    background-color:crimson;
+}
 
+main .add-post:hover,.edit-post:hover,.delete-post:hover,.details-post:hover{
+    box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.3);
+    opacity:0.8;
+}
 
 footer {
-    background-color: #003478;
+    background-color: #0D569E;
     border-top: solid 2px #808080;
     color: #fff;
     font-size: 12px;
     padding: 30px 0 10px 0;
-
 }
 
 .footer {

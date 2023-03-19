@@ -5,14 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 *@
-<h1>Index</h1>
+<center><h1>Quản lý bài đăng</h1></center>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="add-post">Thêm bài viết</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Thumb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cat)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -25,21 +31,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.Author)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thumb)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Account)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cat)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+             <td>
+                @*@Html.DisplayFor(modelItem => item.Thumb)*@
+                    <img  src="/images/posts/@item.Thumb" alt="@item.Thumb" style="max-width:200px" />
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Cat.CatName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -52,19 +61,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Author)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thumb)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Account.FullName)
             </td>
+           
             <td>
-                @Html.DisplayFor(modelItem => item.Cat.CatName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                <div class="row">
+                        <div class="clo-md-12"><a asp-action="Edit" asp-route-id="@item.PostId" class="edit-post">Edit</a> |</div>
+                        <div class="clo-md-12"> <a asp-action="Details" asp-route-id="@item.PostId" class="details-post">Details</a> |</div>
+                        <div class="clo-md-12">   <a asp-action="Delete" asp-route-id="@item.PostId" class="delete-post">Delete</a></div>
+                </div>
+                
+               
+             
             </td>
         </tr>
 }

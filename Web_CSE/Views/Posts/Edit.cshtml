@@ -1,18 +1,19 @@
-﻿@model Web_CSE.Models.Post
+﻿
+@model Web_CSE.Models.Post
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Chỉnh sửa bài viết</h1>
 
-<h4>Post</h4>
+<h4>Bài viết</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-12">
+        <form asp-controller="Posts" asp-action="Edit"asp-route-id="@Model.PostId" method="post" enctype="multipart/form-data">
+@*            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="PostId" />
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -45,13 +46,74 @@
                 <span asp-validation-for="CatId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Thumb" class="control-label"></label>
-                <input asp-for="Thumb" class="form-control" />
+                <label asp-for="Thumb" class="control-label"></label>       
+                <input name="fThumb" type="file"asp-for="Thumb" class="form-control" />
                 <span asp-validation-for="Thumb" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
             </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>*@
+
+
+            <div>
+                <div class="form-group">
+
+                    <dl class="row">
+                        <input type="hidden" asp-for="PostId" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <dt class="col-sm-2">
+                            <label asp-for="Title" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </dd>
+                        <dt class="col-sm-2">
+                            <label asp-for="Describe" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            <textarea asp-for="Describe" class="form-control text-area" name="editor"  ></textarea>
+                            <span asp-validation-for="Describe" class="text-danger"></span>
+                        </dd>
+                        <dt class="col-sm-2">
+                            <label asp-for="Author" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            <input asp-for="Author" class="form-control" />
+                            <span asp-validation-for="Author" class="text-danger"></span>
+                        </dd>
+                        <dt class="col-sm-2">
+                            <label asp-for="Thumb" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            @* @Html.DisplayFor(model => model.Thumb)*@
+                             <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
+                            <input name="fThumb" type="file" asp-for="Thumb" class="form-control" />
+                        </dd>
+                        <dt class="col-sm-2">
+                            <label asp-for="AccountId" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
+                        </dd>
+                        <dt class="col-sm-2">
+                            <label asp-for="CatId" class="control-label"></label>
+                        </dt>
+                        <dd class="col-sm-10">
+                            <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+
+
+
         </form>
     </div>
 </div>

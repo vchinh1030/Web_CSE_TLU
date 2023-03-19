@@ -21,6 +21,8 @@ public partial class Post
 
     public string Thumb { get; set; }
 
+    public string Alias { get; set; }
+
     public virtual Account Account { get; set; }
 
     public virtual Category Cat { get; set; }

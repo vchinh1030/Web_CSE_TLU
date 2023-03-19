@@ -24,7 +24,6 @@ public partial class CnttCseContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=DANGAR\\SQLEXPRESS;Database=CNTT_CSE;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -58,6 +57,7 @@ public partial class CnttCseContext : DbContext
             entity.HasKey(e => e.CatId);
 
             entity.Property(e => e.CatId).HasColumnName("CatID");
+            entity.Property(e => e.Alias).HasMaxLength(100);
             entity.Property(e => e.CatName)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -75,10 +75,7 @@ public partial class CnttCseContext : DbContext
             entity.Property(e => e.Describe)
                 .IsRequired()
                 .HasColumnType("text");
-            entity.Property(e => e.Thumb).HasMaxLength(255);
-            entity.Property(e => e.Title)
-                .IsRequired()
-                .HasMaxLength(100);
+            entity.Property(e => e.Title).IsRequired();
 
             entity.HasOne(d => d.Account).WithMany(p => p.Posts)
                 .HasForeignKey(d => d.AccountId)
