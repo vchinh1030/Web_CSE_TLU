@@ -2,193 +2,220 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Web_CSE</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/style/base.css" />
-</head>
 
-<body>
-    <div class="top-header">
-        <div class="label">
-            <a href="#">Trường Đại Học Thủy Lợi-TLU</a>
-        </div>
-        <div class="list-login">
-            <span>(+) |</span>
-            <a href="#" class="btn-login">Logout</a>
-            <span>| |</span>
-            <span>Ngôn ngữ: </span>
-            <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-vi.png"
-                    alt=""></a>
-            <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-en.png"
-                    alt=""></a>
-        </div>
-        <div class="header-language">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        </div>
-@*        <div class="search-box">
-            <form action="#" method="post">
-                <input type="text" placeholder="Tìm kiếm" class="search-area">
-                <input type="submit" class="search-btn" value="Tìm">
-            </form>
-        </div>*@
-    </div>
-    <header>
-        <div id="header" class="container">
-            <a href="#"><img class="logo-page" src="http://cse.tlu.edu.vn/cse/assets/images/logo.jpg" alt=""></a>
-            <ul class="list-navigation">
-                <li class="sub-nav"><a href="#">TRANG CHỦ</a></li>
-                <li class="sub-nav">
-                    <a href="">GIỚI THIỆU</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Logo khoa CNTT</a></li>
-                        <li><a href="">Lời chào mừng</a></li>
-                        <li><a href="">Tổ chức</a></li>
-                        <li><a href="">Hợp tác</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">NGHIÊN CỨU KHOA HỌC</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Các đề tài,dự án</a></li>
-                        <li><a href="">Thông tin seminar</a></li>
-                        <li><a href="">Công trình công bố</a></li>
-                        <li><a href="">Các phòng thí nghiệm</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">ĐÀO TẠO</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Đào tạo đại học</a></li>
-                        <li><a href="">Đào tạo sau đại học</a></li>
-                        <li><a href="">Mô tả chương trình đào tạo</a></li>
-                        <li><a href="">Định hướng ngành nghề</a></li>
-                        <li><a href="">Chuẩn đầu ra</a></li>
-                        <li><a href="">Đề cương môn học</a></li>
+    <title>@ViewData["Title"] - WebCSE Admin</title>
 
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">BỘ MÔN-TRUNG TÂM</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">CN phần mềm</a></li>
-                        <li><a href="">Hệ thống thông tin</a></li>
-                        <li><a href="">Toán học</a></li>
-                        <li><a href="">Tin học và kỹ thuật tính toán</a></li>
-                        <li><a href="">Tin học</a></li>
-                        <li><a href="">Mạng và an toàn thông tin</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">TUYỂN SINH</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Nhóm ngành CNTT</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">SINH VIÊN</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Tài liệu sinh viên</a></li>
-                        <li><a href="">Tổ tư vấn học tập</a></li>
-                        <li><a href="">Biểu mẫu đồ án tốt nghiệp</a></li>
-                        <li><a href="">Luận văn tốt nghiệp</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">TIN TỨC</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Sự kiện</a></li>
-                        <li><a href="">CSE trên báo</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav">
-                    <a href="">THÔNG BÁO</a>
-                    <ul class="list-child-nav">
-                        <li><a href="">Thông báo</a></li>
-                        <li><a href="">TB đào tạo</a></li>
-                        <li><a href="">Nghiên cứu khoa học</a></li>
-                        <li><a href="">Tuyển dụng</a></li>
-                        <li><a href="">Học bổng</a></li>
-                        <li><a href="">Thông báo khác</a></li>
-                    </ul>
-                </li>
-                <li class="sub-nav"><a href="">LIÊN HỆ</a></li>
-            </ul>
-        </div>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!-- Custom fonts for this template-->
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-    <footer class="footer border-top text-muted">
-        <div class="container footer-container">
-            <div class="row">
-                <div class="col-md-3 footer-col">
-                    <ul class="footer-menu">
-                        <li><a href="">Giới thiệu</a></li>
-                        <li><a href="">Logo của Khoa CNTT</a></li>
-                        <li><a href="">Lời chào mừng</a></li>
-                        <li><a href="">Tổ chức</a></li>
-                        <li><a href="">Hợp tác liên kết</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-col">
-                    <ul class="footer-menu">
-                        <li><a href="">Đào tạo</a></li>
-                        <li><a href="">Mô hình đào tạo</a></li>
-                        <li><a href="">Đào tạo đại học</a></li>
-                        <li><a href="">Định hướng ngành nghề</a></li>
-                        <li><a href="">Đào tạo sau đại học</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-col">
-                    <ul class="footer-menu">
-                        <li><a href="">Nghiên cứu khoa học</a></li>
-                        <li><a href="">Thông tin seminar</a></li>
-                        <li><a href="">Các đề tài, dự án</a></li>
-                        <li><a href="">Công trình công bố</a></li>
-                        <li><a href="">Các phòng thí nghiệm</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-col">
-                    <ul class="footer-menu">
-                        <li><a href="">Công nghệ phần mềm</a></li>
-                        <li><a href="">Hệ thống thông tin</a></li>
-                        <li><a href="">Khoa học máy tính</a></li>
-                        <li><a href="">Kỹ thuật máy tính và mạng</a></li>
-                        <li><a href="">Toán học</a></li>
-                        <li><a href="">Trung tâm tin học</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container footer-desc">
-                <div class="row">
-                    <div class="footer-contact">
-
-                        <img src="http://cse.tlu.edu.vn/portals/0/images/img-01.png" alt="">
-                        <p class="text-white">
-                            © 2017 Khoa Công nghệ thông tin - Đại học Thủy lợi
-                            <br>
-                            Địa chỉ: nhà C1, Đại học Thủy lợi, 175 Tây Sơn, Đống Đa, Hà Nội. Điện thoại: (+84)-024 3
-                            5632211. Email:
-                            <a class="text-white" href="#">vpkcntt@tlu.edu.vn</a>
-                        </p>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        
-
-    </footer>
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <!-- Bootstrap core JavaScript-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    @await RenderSectionAsync("styles", required: false)
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+@*                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>*@
+                <div class="sidebar-brand-text mx-3">Đại Học Thủy Lợi</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Quản lý tài khoản
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Tài khoản cá nhân</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Chức năng:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                   aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Phân quyền</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Quản lý bài đăng
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                   aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Bài đăng</span>
+                </a>
+ @*               <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item active" href="blank.html">Blank Page</a>
+                    </div>
+                </div>*@
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Xin chào Admin</span>
+@*                                <img class="img-profile rounded-circle"
+                                     src="img/undraw_profile.svg">*@
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                <div class=""></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>ĐẠI HỌC THỦY LỢI</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

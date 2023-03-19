@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Web_CSE.Models.Role>
+
+
+@{
+    ViewData["Title"] = "Quyền truy cập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Phân quyền truy cập</h1>
+
+<p>
+    <a asp-action="Create" style="color:black">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleDescribtion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleDescribtion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RoleId" style="color:black">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RoleId" style="color:black">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RoleId" style="color:black">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
