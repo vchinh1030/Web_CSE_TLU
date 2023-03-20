@@ -66,14 +66,14 @@ namespace Web_CSE.Controllers
             if (ModelState.IsValid)
             {
                 post.Thumb = "default.jpg";
-
+                post.Describe= Request.Form["Describe"];
                 if (fThumb != null)
                 {
                     string extension = Path.GetExtension(fThumb.FileName);
-                    string image = Utilities.SEOUrl(post.Title).Substring(0,20) + extension;
+                    string image = Utilities.SEOUrl(post.Title) + extension;
                     post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                 }
-                post.Alias = Utilities.SEOUrl(post.Title).Substring(0,30);
+                post.Alias = Utilities.SEOUrl(post.Title);
                 post.Date = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -116,17 +116,22 @@ namespace Web_CSE.Controllers
 
             if (ModelState.IsValid)
             {
+                string currentThumb = Request.Form["currentThumb"];
+                //var currentPost = await _context.Posts.FindAsync(id);
+                string oldThumb = currentThumb;
                 try
                 {
-                    post.Thumb = "default.jpg";
-
-                    if (fThumb != null)
-                    {
-                        string extension = Path.GetExtension(fThumb.FileName);
-                        string image = Utilities.SEOUrl(post.Title).Substring(0, 20) + extension;
-                        post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
-                    }
-                    post.Alias = Utilities.SEOUrl(post.Title).Substring(0, 30);
+                    
+                    if (post.Describe == null) post.Describe = "Bi loi";
+                    if (fThumb == null) post.Thumb = oldThumb;
+                         else   //if (fThumb != null) 
+                        {
+                            string extension = Path.GetExtension(fThumb.FileName);
+                            string image = Utilities.SEOUrl(post.Title) + extension;
+                            post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
+                        }
+                    
+                    post.Alias = Utilities.SEOUrl(post.Title);
                     post.Date = DateTime.Now;
 
                     _context.Update(post);

@@ -211,7 +211,9 @@ main .edit-post{
 main .delete-post{
     background-color:crimson;
 }
-
+main textarea{
+    max-height:700px;
+}
 main .add-post:hover,.edit-post:hover,.delete-post:hover,.details-post:hover{
     box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.3);
     opacity:0.8;
