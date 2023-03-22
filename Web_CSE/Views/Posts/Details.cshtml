@@ -57,6 +57,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PostId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="post-index">
+    <a asp-action="Edit" asp-route-id="@Model.PostId" class="details-post-2">Edit</a>
+        <a asp-action="Index"class="back-to-list">Back to List</a>
+    </div>
 </div>

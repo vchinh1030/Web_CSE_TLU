@@ -8,32 +8,32 @@
 <center><h1>Quản lý bài đăng</h1></center>
 
 <p>
-    <a asp-action="Create" class="add-post">Thêm bài viết</a>
+    <a asp-action="Create" class="add-post"><i class="fa fa-plus" aria-hidden="true"></i>    Thêm bài viết</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Thumb)
+                Tiêu đề
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cat)
+               Danh mục
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Tiêu đề
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Describe)
+               Nội dung
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Ngày đăng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                Chủ bài đăng
             </th>
            
             <th>
-                @Html.DisplayNameFor(model => model.Account)
+                Tài khoản
             </th>
            
             <th></th>
@@ -67,10 +67,11 @@
             </td>
            
             <td>
-                <div class="row">
-                        <div class="clo-md-12"><a asp-action="Edit" asp-route-id="@item.PostId" class="edit-post">Edit</a> |</div>
-                        <div class="clo-md-12"> <a asp-action="Details" asp-route-id="@item.PostId" class="details-post">Details</a> |</div>
-                        <div class="clo-md-12">   <a asp-action="Delete" asp-route-id="@item.PostId" class="delete-post">Delete</a></div>
+                <div class="row index-button">
+                        <div class="clo-md-12"> <a asp-action="Details" asp-route-id="@item.PostId" class="details-post icon" title="Chi tiết"><i class="fa fa-info-circle" aria-hidden="true"></i></a></div>
+                        <div class="clo-md-12"><a asp-action="Edit" asp-route-id="@item.PostId" class="edit-post icon" title="Sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
+
+                        <div class="clo-md-12">   <a asp-action="Delete" asp-route-id="@item.PostId" class="delete-post icon" title="Xóa"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
                 </div>
                 
                
