@@ -217,6 +217,7 @@ main .index-button{
 main .add-post{
     width:auto!important;
     height:auto!important;
+    min-width:50px;
     display:block!important;
 }
 
@@ -236,6 +237,7 @@ main .edit-post-2,.details-post-2{
     margin:3px;
     justify-content:center;
      background-color:burlywood;
+     min-width:50px;
 }
 .details-post-2 {
     background-color: #003478;
@@ -257,7 +259,8 @@ main textarea{
     align-items: center;
     text-decoration: none !important;
     box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.6);
-    margin-left:3px;
+    margin-left: 3px;
+    min-width: 50px;
 }
 .post-index {
     display: flex;

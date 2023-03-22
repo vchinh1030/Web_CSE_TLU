@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,10 +16,12 @@ namespace Web_CSE.Controllers
     public class PostsController : Controller
     {
         private readonly CnttCseContext _context;
-
-        public PostsController(CnttCseContext context)
+        private readonly IWebHostEnvironment _env;
+        
+        public PostsController(CnttCseContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: Posts
@@ -83,6 +86,23 @@ namespace Web_CSE.Controllers
             ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatName", post.CatId);
             return View(post);
         }
+
+        [HttpPost]
+        public ActionResult UploadImage(List<IFormFile> files)
+        {
+            var filepath = "";
+            foreach (IFormFile photo in Request.Form.Files)
+            {
+                string serverMapPath = Path.Combine(_env.WebRootPath, "Image", photo.FileName);
+                using (var stream = new FileStream(serverMapPath, FileMode.Create))
+                {
+                    photo.CopyTo(stream);
+                }
+                filepath = "https://localhost:5001" + "Image" + photo.FileName;
+            }
+            return Json(new {Url = filepath});
+        }
+
 
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)

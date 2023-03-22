@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\accounts\**" />
+    <Content Remove="wwwroot\images\accounts\**" />
+    <EmbeddedResource Remove="wwwroot\images\accounts\**" />
+    <None Remove="wwwroot\images\accounts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
@@ -22,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\accounts\" />
     <Folder Include="wwwroot\images\posts\" />
   </ItemGroup>
 
