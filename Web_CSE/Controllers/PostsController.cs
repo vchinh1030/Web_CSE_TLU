@@ -90,7 +90,7 @@ namespace Web_CSE.Controllers
         }
 
         //[HttpPost]
-        //public ActionResult UploadImage(List<IFormFile> files)
+        //public ActionResult UploadImage2(List<IFormFile> files)
         //{
         //    var filepath = "";
         //    foreach (IFormFile photo in Request.Form.Files)
@@ -101,7 +101,7 @@ namespace Web_CSE.Controllers
         //            {
         //                photo.CopyTo(stream);
         //            }
-        //            filepath = "https://localhost:5001" + "Image" + photo.FileName;
+        //            filepath = HttpContext.Request.Host + "/images/posts/contents/rich-text/" + photo.FileName;
         //        }
         //        catch (Exception ex)
         //        {
@@ -116,7 +116,7 @@ namespace Web_CSE.Controllers
             {
                 var uploads = Path.Combine(_env.WebRootPath, "images/contents");
                 var filePath = Path.Combine(uploads, "rich-text");
-                var urls = new List<string>();
+                var urls = new Dictionary<string,string>();
 
                 //If folder of new key is not exist, create the folder.
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
@@ -125,8 +125,8 @@ namespace Web_CSE.Controllers
                 {
                     if (contentFile != null && contentFile.Length > 0)
                     {
-                        await contentFile.CopyToAsync(new FileStream($"{filePath}\\{contentFile.FileName}+{Utilities.GetRandomKey(4)}", FileMode.Create));
-                        urls.Add($"{HttpContext.Request.Host}/rich-text/{contentFile.FileName}+{Utilities.GetRandomKey(4)}");
+                        await contentFile.CopyToAsync(new FileStream($"{filePath}\\{Utilities.GetRandomKey(5)}{contentFile.FileName}", FileMode.Create));
+                        urls.Add("url",$"{HttpContext.Request.Host}/images/contents/rich-text/{Utilities.GetRandomKey(5)}{contentFile.FileName}");
                     }
                 }
 

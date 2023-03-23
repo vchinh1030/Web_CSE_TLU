@@ -12,6 +12,7 @@ using System.Text.Unicode;
 using System.Threading.Tasks;
 using Web_CSE.Models;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Identity;
 
 namespace Web_CSE
 {
@@ -32,6 +33,7 @@ namespace Web_CSE
             services.AddSession();
             services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
             services.AddControllersWithViews();;
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
