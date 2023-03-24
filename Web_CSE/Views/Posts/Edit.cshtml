@@ -259,7 +259,7 @@
             return new MyUploadAdapter(loader);
         };
     }
-    var imageUrl = 'https://localhost:5001/rich-text/';
+
     ClassicEditor
         .create(document.querySelector('#describe'), {
             extraPlugins: [MyCustomUploadAdapterPlugin],
@@ -267,19 +267,18 @@
             language: '~/ckeditor/translations/vi.js',
             toolbar: {
                 items: [
-                     'heading',
+                    'undo', 'redo',
+                    '|', 'heading',
                     '|', 'bold', 'italic',
                     '|', 'link', 'uploadImage', 'ckfinder', 'insertTable', 'mediaEmbed',
                     '|', 'bulletedList', 'numberedList', 'outdent', 'indent', 'undo', 'redo'
                 ]
-            }, ckfinder: {
-                // tokenUrl: 'https://localhost:5001/rich-text/',
-                //uploadUrl: 'https://localhost:5001/rich-text/'
             },
-            cloudServices: {
-                // tokenUrl: https://localhost:5001/Posts/UploadImage'',
-                uploadUrl: 'https://localhost:5001/rich-text'
-            }
+            //ckfinder: {
+            //   // tokenUrl: 'https://localhost:5001/rich-text/',
+            //    uploadUrl: 'https://localhost:5001/Posts/UploadImage2',
+            //},
+
             //image: {
             //    uploadUrl: 'https://localhost:5001/rich-text/'
             //},
@@ -289,7 +288,7 @@
         .then(editor => {
             const toolbarContainer = document.querySelector('.document-editor__toolbar');
             toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-            editor.setData('<img src="' + imageUrl + '">');
+
             window.editor = editor;
         })
         .catch(error => {

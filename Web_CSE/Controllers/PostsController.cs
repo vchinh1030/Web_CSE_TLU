@@ -117,7 +117,8 @@ namespace Web_CSE.Controllers
                 var uploads = Path.Combine(_env.WebRootPath, "images/contents");
                 var filePath = Path.Combine(uploads, "rich-text");
                 var urls = new Dictionary<string,string>();
-
+                var url = new List<string>();
+                var random =  Utilities.GetRandomInt(5);
                 //If folder of new key is not exist, create the folder.
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
@@ -125,8 +126,8 @@ namespace Web_CSE.Controllers
                 {
                     if (contentFile != null && contentFile.Length > 0)
                     {
-                        await contentFile.CopyToAsync(new FileStream($"{filePath}\\{Utilities.GetRandomKey(5)}{contentFile.FileName}", FileMode.Create));
-                        urls.Add("url",$"{HttpContext.Request.Host}/images/contents/rich-text/{Utilities.GetRandomKey(5)}{contentFile.FileName}");
+                        await contentFile.CopyToAsync(new FileStream($"{filePath}\\{random}{contentFile.FileName}", FileMode.Create));
+                        urls.Add("url",$"https://{HttpContext.Request.Host}/images/contents/rich-text/{random}{contentFile.FileName}");
                     }
                 }
 

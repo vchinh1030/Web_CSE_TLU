@@ -106,7 +106,20 @@ namespace Web_CSE.Helpers
 
             return sb.ToString();
         }
+        public static string GetRandomInt(int length = 5)
+        {
+            //chuỗi mẫu (pattern)
+            string pattern = @"0123456789";
+            Random rd = new Random();
+            StringBuilder sb = new StringBuilder();
 
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append(pattern[rd.Next(0, pattern.Length)]);
+            }
+
+            return sb.ToString();
+        }
         public static void CreateIfMissing(string path)
         {
             bool folderExists = Directory.Exists(path);

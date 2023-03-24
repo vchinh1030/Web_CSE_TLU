@@ -20,8 +20,8 @@
         <dt class = "col-sm-2">
             <label asp-for="Describe" class="control-label">Nội dung</label>
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Describe)
+        <dd class = "col-sm-10 ck-content">
+            @Html.Raw(@Model.Describe)
         </dd>
         <dt class = "col-sm-2">
             <label asp-for="Date" class="control-label">Ngày đăng</label>
