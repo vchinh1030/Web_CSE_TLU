@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\images\contents\rich-text\" />
     <Folder Include="wwwroot\images\posts\" />
+    <Folder Include="wwwroot\image\" />
   </ItemGroup>
 
 </Project>

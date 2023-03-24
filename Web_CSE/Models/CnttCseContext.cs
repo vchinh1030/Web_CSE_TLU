@@ -68,9 +68,7 @@ public partial class CnttCseContext : DbContext
             entity.Property(e => e.PostId).HasColumnName("PostID");
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
             entity.Property(e => e.Alias).HasMaxLength(255);
-            entity.Property(e => e.Author)
-                .IsRequired()
-                .HasMaxLength(50);
+            entity.Property(e => e.Author).HasMaxLength(50);
             entity.Property(e => e.CatId).HasColumnName("CatID");
             entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Describe).IsRequired();

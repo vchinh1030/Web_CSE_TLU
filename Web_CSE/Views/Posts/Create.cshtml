@@ -64,7 +64,17 @@
                             <label asp-for="Describe" class="control-label">Nội dung</label>
                         </dt>
                         <dd class="col-sm-10">
-                            <textarea name="Describe" id="describe" asp-for="Describe" class="form-control text-area"></textarea>
+                            <div class="document-editor">
+                                <div class="document-editor__toolbar"></div>
+                                <div class="document-editor__editable-container">
+                                    <div class="document-editor__editable">
+                                        <textarea name="Describe" id="describe" asp-for="Describe" class="form-control text-area"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                                  
+                           
                             <span asp-validation-for="Describe" class="text-danger"></span>
                         </dd>
                         <dt class="col-sm-2">
@@ -104,7 +114,9 @@
         </form>
     </div>
 </div>
+<script src="~/ckeditor/translations/vi.js"></script>
 
+<script src="~/ckfinder/ckfinder.js"></script>
 <script type="text/javascript">
 
 
@@ -123,6 +135,33 @@
                     this._sendRequest(file);
                 }));
         }
+        //upload() {
+        //    const data = new FormData();
+        //    data.append('file', this.loader.file);
+        //    data.append('token', this.token);
+        //    data.append('key', guid() + '.jpg');
+
+        //    return new Promise((resolve, reject) => {
+        //        axios({
+        //            url: '{my server url}',
+        //            method: 'post',
+        //            data,
+        //            headers: {
+        //                'X-Requested-With': 'XMLHttpRequest',
+        //                'Content-Type': 'application/x-www-form-urlencoded'
+        //            },
+        //            withCredentials: false
+        //        }).then(res => {
+        //            var resData = res.data;
+        //            resData.default = resData.url; 
+        //            resolve(resData);
+        //        }).catch(error => {
+        //            reject(error)
+        //        });
+        //    });
+        //}
+
+
 
         // Aborts the upload process.
         abort() {
@@ -213,12 +252,33 @@
     ClassicEditor
         .create(document.querySelector('#describe'), {
             extraPlugins: [MyCustomUploadAdapterPlugin],
-            language: 'vi' ,
+            Plugin: [CKFinder,Image],
+            language: '~/ckeditor/translations/vi.js' ,
+            toolbar: {
+                items: [
+                    'undo', 'redo',
+                    '|', 'heading',
+                    '|', 'bold', 'italic',
+                    '|', 'link', 'uploadImage', 'ckfinder','insertTable', 'mediaEmbed',
+                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent', 'undo', 'redo'
+                ]
+            }, 
+            //ckfinder: {
+            //   // tokenUrl: 'https://localhost:5001/rich-text/',
+            //    uploadUrl: 'https://localhost:5001/Posts/UploadImage2',
+            //},
+           
+            //image: {
+            //    uploadUrl: 'https://localhost:5001/rich-text/'
+            //},
             // More configuration options.
             // ...
         })
-        .then(editor=>{
-            window.editor=editor;
+        .then(editor => {
+            const toolbarContainer = document.querySelector('.document-editor__toolbar');
+            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+
+            window.editor = editor;
         })
         .catch(error => {
             console.log(error);
