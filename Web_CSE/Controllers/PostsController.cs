@@ -176,7 +176,7 @@ namespace Web_CSE.Controllers
                 try
                 {
                     
-                    if (post.Describe == null) post.Describe = "Bi loi";
+                    if (post.Describe == null) post.Describe = "Trang hiện đang lỗi, vui lòng thử lại sau.";
                     if (fThumb == null) post.Thumb = oldThumb;
                          else   //if (fThumb != null) 
                         {

@@ -1,0 +1,22 @@
+﻿@model Web_CSE.Models.Post
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10 ck-content">
+            @Html.Raw(@Model.Describe)
+        </dd>
+    </dl>
+</div>
+<div>
+    <div style="margin-bottom: 20px">
+        <a asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true" style="text-align: right; display: block">  Trở lại trang trước</i></a>
+    </div>
+</div>
