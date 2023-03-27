@@ -9,6 +9,12 @@ public partial class Category
 
     public string CatName { get; set; }
 
+    public string Title { get; set; }
+
+    public string Alias { get; set; }
+
+    public string Thumb { get; set; }
+
     public int? Ordering { get; set; }
 
     public int? Parent { get; set; }

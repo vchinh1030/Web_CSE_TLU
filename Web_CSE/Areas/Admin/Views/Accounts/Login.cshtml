@@ -1,0 +1,32 @@
+﻿@model Web_CSE.Areas.Admin.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="modal-body">
+    <form asp-area="Admin" asp-controller="Accounts" asp-action="Login" method="post">
+        <div class="form-item login-input">
+            <label for="login-username" class="label-login">
+                Username:
+            </label>
+            <input id="login-username" type="text" asp-for="Email" class="modal-input">
+        </div>
+        <div class="form-item login-input">
+            <label for="login-password" class="label-login">
+                Password:
+            </label>
+            <input id="login-password" type="password" asp-for="Password" class="modal-input">
+        </div>
+        <div class="form-item">
+            <button class="login">Đăng nhập</button>
+            <a href="#" class="login-cancel">Cancel</a>
+        </div>
+        <div class="form-item">
+            <input type="checkbox">Remmember Login
+        </div>
+        <div class="form-item">
+            <a href="#">Reset Password</a>
+        </div>
+        <p class="mg-b-0">@ViewBag.Error</p>
+    </form>
+</div>

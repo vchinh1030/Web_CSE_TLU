@@ -9,7 +9,7 @@ public partial class Role
 
     public string RoleName { get; set; }
 
-    public string RoleDescribtion { get; set; }
+    public string RoleDescription { get; set; }
 
     public virtual ICollection<Account> Accounts { get; } = new List<Account>();
 }

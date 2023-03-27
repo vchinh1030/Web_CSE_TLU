@@ -32,6 +32,24 @@ namespace Web_CSE
             services.AddSession();
             services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] {UnicodeRanges.All}));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddMemoryCache();
+            services.AddHttpContextAccessor();
+            services.AddAuthentication("CookieAuthentication")
+                .AddCookie("CookieAuthentication", config => 
+                {
+                    config.Cookie.Name = "UserLoginCookie";
+                    config.ExpireTimeSpan = TimeSpan.FromDays(1);
+                    config.LoginPath = "/dang-nhap.html";
+                    config.LogoutPath = "/dang-xuat.html";
+                    config.AccessDeniedPath = "/han-che-truy-cap.html";
+                });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(150);
+                options.ExpireTimeSpan = TimeSpan.FromDays(150);
+                options.LoginPath = "/dang-nhap.html";
+            });
             //services.AddControllersWithViews();
         }
 
@@ -55,7 +73,7 @@ namespace Web_CSE
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

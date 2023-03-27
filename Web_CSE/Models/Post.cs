@@ -9,17 +9,19 @@ public partial class Post
 
     public string Title { get; set; }
 
-    public string Describe { get; set; }
-
-    public DateTime Date { get; set; }
-
-    public string Author { get; set; }
-
-    public int AccountId { get; set; }
-
-    public int CatId { get; set; }
+    public string Contents { get; set; }
 
     public string Thumb { get; set; }
+
+    public string Alias { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+
+    public int? AccountId { get; set; }
+
+    public string ShortContent { get; set; }
+
+    public int? CatId { get; set; }
 
     public virtual Account Account { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Web_CSE.Models;
 namespace Web_CSE.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         private readonly CnttCseContext _context;
@@ -54,7 +56,7 @@ namespace Web_CSE.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RoleId,RoleName,RoleDescribtion")] Role role)
+        public async Task<IActionResult> Create([Bind("RoleId,RoleName,RoleDescription")] Role role)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +88,7 @@ namespace Web_CSE.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName,RoleDescribtion")] Role role)
+        public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName,RoleDescription")] Role role)
         {
             if (id != role.RoleId)
             {
@@ -141,7 +143,7 @@ namespace Web_CSE.Areas.Admin.Controllers
         {
             if (_context.Roles == null)
             {
-                return Problem("Entity set 'CNTT_CSEContext.Roles'  is null.");
+                return Problem("Entity set 'CnttCseContext.Roles'  is null.");
             }
             var role = await _context.Roles.FindAsync(id);
             if (role != null)
