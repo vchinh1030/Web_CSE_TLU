@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -66,12 +67,26 @@ namespace Web_CSE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,Title,Describe,Date,Author,AccountId,CatId,Thumb")] Post post,IFormFile fThumb)
+        public async Task<IActionResult> Create([Bind("PostId,Title,Contents,CreatedAt,ShortContent,AccountId,CatId,Thumb")] Post post,IFormFile fThumb)
         {
             if (ModelState.IsValid)
             {
                 post.Thumb = "default.jpg";
-                post.Describe= Request.Form["Describe"];
+                post.Contents= Request.Form["Contents"];
+                string pattern = "<img.*?>";
+                string replacement = "";
+                Regex rgx = new Regex(pattern);
+                if (post.Contents.Length<= 150)
+                {
+                    post.ShortContent = rgx.Replace(post.Contents, replacement) + "...";
+                }
+                else
+                {
+                   
+                    post.ShortContent = rgx.Replace(post.Contents, replacement).Substring(0, 150);
+                }
+               
+                //post.ShortContent = post.Contents.Substring(0, 150).Trim() + "...";
                 if (fThumb != null)
                 {
                     string extension = Path.GetExtension(fThumb.FileName);
@@ -79,7 +94,7 @@ namespace Web_CSE.Controllers
                     post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                 }
                 post.Alias = Utilities.SEOUrl(post.Title);
-                post.Date = DateTime.Now;
+                post.CreatedAt = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -161,7 +176,7 @@ namespace Web_CSE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Describe,Date,Author,AccountId,CatId,Thumb")] Post post, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<IActionResult> Edit(int id, [Bind("PostId,Title,Contents,CreatedAt,ShortContent,AccountId,CatId,Thumb")] Post post, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
             if (id != post.PostId)
             {
@@ -172,11 +187,25 @@ namespace Web_CSE.Controllers
             {
                 string currentThumb = Request.Form["currentThumb"];
                 //var currentPost = await _context.Posts.FindAsync(id);
+                string pattern = "<img.*?>";
+                string replacement = "";
+                Regex rgx = new Regex(pattern);
+                if (post.Contents.Length <= 150)
+                {
+                    post.ShortContent = rgx.Replace(post.Contents, replacement) + "...";
+                }
+                else
+                {
+                   
+                    post.ShortContent = rgx.Replace(post.Contents, replacement).Substring(0, 150);
+                }
+
+                // post.ShortContent = post.Contents.Substring(0,150).Trim()+"...";
                 string oldThumb = currentThumb;
                 try
                 {
                     
-                    if (post.Describe == null) post.Describe = "Bi loi";
+                    if (post.Contents == null) post.Contents = "Bi loi";
                     if (fThumb == null) post.Thumb = oldThumb;
                          else   //if (fThumb != null) 
                         {
@@ -186,7 +215,7 @@ namespace Web_CSE.Controllers
                         }
                     
                     post.Alias = Utilities.SEOUrl(post.Title);
-                    post.Date = DateTime.Now;
+                    post.CreatedAt = DateTime.Now;
 
                     _context.Update(post);
                     await _context.SaveChangesAsync();

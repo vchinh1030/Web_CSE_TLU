@@ -23,11 +23,12 @@
                 Tiêu đề
             </th>
             <th>
-                Ngày đăng
+                Nội dung
             </th>
             <th>
-                Chủ bài đăng
+                Ngày đăng
             </th>
+
            
             <th>
                 Tài khoản
@@ -46,15 +47,16 @@
              <td>
                 @Html.DisplayFor(modelItem => item.Cat.CatName)
             </td>
-            <td>
+                <td style="max-width:300px">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                <td style="max-width:300px">
+                @Html.Raw(item.ShortContent)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
+
            
             <td>
                 @Html.DisplayFor(modelItem => item.Account.FullName)

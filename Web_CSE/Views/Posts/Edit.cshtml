@@ -72,26 +72,20 @@
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </dd>
                         <dt class="col-sm-2">
-                            <label asp-for="Describe" class="control-label">Nội dung</label>
+                            <label asp-for="Contents" class="control-label">Nội dung</label>
                         </dt>
                         <dd class="col-sm-10">
                             <div class="document-editor">
                                 <div class="document-editor__toolbar"></div>
                                 <div class="document-editor__editable-container">
                                     <div class="document-editor__editable">
-                                        <textarea name="Describe" id="describe" asp-for="Describe" class="form-control text-area"></textarea>
+                                        <textarea name="Contents" id="contents" asp-for="Contents" class="form-control text-area"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <span  asp-validation-for="Describe" class="text-danger"></span>
+                            <span  asp-validation-for="Contents" class="text-danger"></span>
                         </dd>
-                        <dt class="col-sm-2">
-                            <label asp-for="Author" class="control-label">Người đăng</label>
-                        </dt>
-                        <dd class="col-sm-10">
-                            <input asp-for="Author" class="form-control" />
-                            <span asp-validation-for="Author" class="text-danger"></span>
-                        </dd>
+                       
                         <dt class="col-sm-2">
                             <label asp-for="Thumb" class="control-label">Ảnh đại diện</label>
                         </dt>
@@ -128,6 +122,7 @@
 </div>
 <script src="~/ckeditor/translations/vi.js"></script>
 <script src="~/ckfinder/ckfinder.js"></script>
+
 <script type="text/javascript">
 
 
@@ -261,17 +256,21 @@
     }
 
     ClassicEditor
-        .create(document.querySelector('#describe'), {
+        .create(document.querySelector('#contents'), {
             extraPlugins: [MyCustomUploadAdapterPlugin],
             Plugin: [CKFinder, Image],
             language: '~/ckeditor/translations/vi.js',
+            //alignment: {
+            //    options: ['left', 'right','center','justify']
+            //},
             toolbar: {
-                items: [
-                    'undo', 'redo',
+
+                items: [                  
                     '|', 'heading',
                     '|', 'bold', 'italic',
                     '|', 'link', 'uploadImage', 'ckfinder', 'insertTable', 'mediaEmbed',
-                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent', 'undo', 'redo'
+                    '|', 'bulletedList', 'numberedList', 'outdent', 'indent', 'undo', 'redo',
+                    //'|', 'alignment:left', 'alignment:right', 'alignment:center', 'alignment:justify'
                 ]
             },
             //ckfinder: {

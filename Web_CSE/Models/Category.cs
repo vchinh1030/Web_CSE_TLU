@@ -9,13 +9,17 @@ public partial class Category
 
     public string CatName { get; set; }
 
+    public string Title { get; set; }
+
+    public string Alias { get; set; }
+
+    public string Thumb { get; set; }
+
     public int? Ordering { get; set; }
 
     public int? Parent { get; set; }
 
     public int? Levels { get; set; }
-
-    public string Alias { get; set; }
 
     public virtual ICollection<Post> Posts { get; } = new List<Post>();
 }
