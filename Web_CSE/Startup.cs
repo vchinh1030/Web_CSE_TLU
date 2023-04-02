@@ -8,10 +8,14 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using Web_CSE.Models;
+
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Web_CSE
 {
@@ -72,6 +76,7 @@ namespace Web_CSE
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseAuthentication();
             app.UseEndpoints(endpoints =>

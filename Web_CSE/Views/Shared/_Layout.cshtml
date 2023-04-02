@@ -12,6 +12,10 @@
     <link rel="shortcut icon" href="https://github.com/fluidicon.png" type="image/x-icon">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style/base.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <link href="~/css/style/content-style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style/posts.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -21,7 +25,7 @@
         </div>
         <div class="list-login">
             <span>(+) |</span>
-            <button class="btn-login" title="Login">Login</button>
+            <a class="btn-login" title="Login">Login</a>
             <span>| |</span>
             <span>Ngôn ngữ: </span>
             <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-vi.png"
@@ -217,25 +221,35 @@
 
 @*            <div class="modal-body">
                 <form asp-area="Admin" asp-controller="Accounts" asp-action="Login" method="post">
+=======
+            <div class="modal-body">
+                <form  method="post">
+>>>>>>> Feature/Post
                     <div class="form-item login-input">
-                        <label for="login-username" class="label-login">
+                        <label  for="login-username" class="label-login">
                             Username:
                         </label>
                         <input id="login-username" type="text" asp-for="Email" class="modal-input">
                     </div>
                     <div class="form-item login-input">
-                        <label for="login-password" class="label-login">
+                        <label  for="login-password" class="label-login">
                             Password:
                         </label>
                         <input id="login-password" type="password" asp-for="Password" class="modal-input">
                     </div>
                     <div class="form-item">
+<<<<<<< HEAD
                         <button class="login">Đăng nhập</button>
                         <a href="#" class="login-cancel">Cancel</a>
+=======
+                        <button asp-controller="" asp-action="" class="login">Login</button>
+                        <a class="login-cancel">Cancel</a>
+>>>>>>> Feature/Post
                     </div>
                     <div class="form-item">
                         <input type="checkbox">Remmember Login
                     </div>
+<<<<<<< HEAD
                     <div class="form-item">
                         <a href="#">Reset Password</a>
                     </div>
@@ -249,9 +263,14 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>*@
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/login-popup.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/translations/vi.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 
 </body>
 

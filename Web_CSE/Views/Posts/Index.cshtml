@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Web_CSE.Models.Post>
+
+@*@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+*@
+<center><h1>Quản lý bài đăng</h1></center>
+
+<p>
+    <a asp-action="Create" class="add-post"><i class="fa fa-plus" aria-hidden="true"></i>    Thêm bài viết</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tiêu đề
+            </th>
+            <th>
+               Danh mục
+            </th>
+            <th>
+                Tiêu đề
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Ngày đăng
+            </th>
+
+           
+            <th>
+                Tài khoản
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             <td>
+                @*@Html.DisplayFor(modelItem => item.Thumb)*@
+                    <img  src="/images/posts/@item.Thumb" alt="@item.Thumb" style="max-width:200px" />
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Cat.CatName)
+            </td>
+                <td style="max-width:300px">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+                <td style="max-width:300px">
+                @Html.Raw(item.ShortContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.FullName)
+            </td>
+           
+            <td>
+                <div class="row index-button">
+                        <div class="clo-md-12"> <a asp-action="Details" asp-route-id="@item.PostId" class="details-post icon" title="Chi tiết"><i class="fa fa-info-circle" aria-hidden="true"></i></a></div>
+                        <div class="clo-md-12"><a asp-action="Edit" asp-route-id="@item.PostId" class="edit-post icon" title="Sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
+
+                        <div class="clo-md-12">   <a asp-action="Delete" asp-route-id="@item.PostId" class="delete-post icon" title="Xóa"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+                </div>
+                
+               
+             
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
