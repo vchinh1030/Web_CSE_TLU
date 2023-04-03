@@ -111,6 +111,25 @@ namespace Web_CSE.Areas.Admin.Controllers
             // return RedirectToAction("Login", "Accounts", new { Area = "Admin" });
             return RedirectToAction("Index", "Home", new { Area = "Admin" });
         }
+        
+        //Đăng xuất 
+        [AllowAnonymous]
+        [Route("dang-xuat.html", Name = "Logout")]
+        public IActionResult Logout(){
+            try
+            {
+                HttpContext.SignOutAsync();
+                HttpContext.Session.Remove("AccountId"); // xóa session theo id
+                return RedirectToAction("Index", "Home"); //đẩy về home index
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        
+        
+        
         // GET: Admin/Accounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {

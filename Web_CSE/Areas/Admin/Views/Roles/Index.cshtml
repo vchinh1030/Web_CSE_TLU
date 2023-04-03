@@ -5,38 +5,43 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Index</h1>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Phân Quyền</h6>
+                            <p>
+                                <a asp-action="Create">Thêm Mới</a>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên</th>
+                                            <th>Mô Tả</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                            
+                                    <tbody>
+                                        @foreach (var item in Model) {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.RoleName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.RoleDescription)
+                                                </td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.RoleId">Edit</a> |
+                                                    <a asp-action="Details" asp-route-id="@item.RoleId">Details</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoleName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoleDescription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleDescription)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RoleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RoleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
