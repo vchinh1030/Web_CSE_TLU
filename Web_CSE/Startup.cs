@@ -13,10 +13,7 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using Web_CSE.Models;
-
 using Microsoft.AspNetCore.Identity;
-
-
 namespace Web_CSE
 {
     public class Startup
