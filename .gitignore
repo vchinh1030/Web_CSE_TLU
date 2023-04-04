@@ -8,3 +8,5 @@ obj/
 bin/
 /Web_CSE/.vs/
 /.vs/Web_CSE_TLU/FileContentIndex
+.idea/
+/.idea
