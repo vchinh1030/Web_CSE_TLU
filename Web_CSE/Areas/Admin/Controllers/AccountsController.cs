@@ -40,7 +40,7 @@ namespace Web_CSE.Areas.Admin.Controllers
             var taikhoanID = HttpContext.Session.GetString("AccountID");
             if (taikhoanID != null)
             {
-                return RedirectToAction("Index", "Home", new { Areas = "Admin" });
+                return RedirectToAction("Index", "Posts", new { Areas = "Admin" });
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -101,7 +101,7 @@ namespace Web_CSE.Areas.Admin.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-                    return RedirectToAction("Index", "Home", new { Area = "Admin" });
+                    return RedirectToAction("Index", "Posts", new { Area = "Admin" });
                 }
             }
             catch
@@ -109,7 +109,7 @@ namespace Web_CSE.Areas.Admin.Controllers
                 return RedirectToAction("Login", "Accounts", new { Area = "Admin" });
             }
             // return RedirectToAction("Login", "Accounts", new { Area = "Admin" });
-            return RedirectToAction("Index", "Home", new { Area = "Admin" });
+            return RedirectToAction("Index", "Posts", new { Area = "Admin" });
         }
         
         //Đăng xuất 
