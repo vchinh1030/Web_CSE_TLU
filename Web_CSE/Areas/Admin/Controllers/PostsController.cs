@@ -18,6 +18,7 @@ using Web_CSE.Helpers;
 namespace Web_CSE.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
      public class PostsController : Controller
     {
         private readonly CnttCseContext _context;
