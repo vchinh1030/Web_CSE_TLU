@@ -203,6 +203,15 @@ namespace Web_CSE.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 string currentThumb = Request.Form["currentThumb"];
+                string authorId = Request.Form["Author"];
+                int author;
+                if (int.TryParse(authorId, out author))
+                {
+                    
+                    post.AccountId = author;
+                }
+
+                post.AccountId = author;
                 //var currentPost = await _context.Posts.FindAsync(id);
                 string pattern = "<img.*?>";
                 string replacement = "";
@@ -218,12 +227,12 @@ namespace Web_CSE.Areas.Admin.Controllers
                 }
 
                 // post.ShortContent = post.Contents.Substring(0,150).Trim()+"...";
-                string oldThumb = currentThumb;
+                
                 try
                 {
                     
                     if (post.Contents == null) post.Contents = "Bi loi";
-                    if (fThumb == null) post.Thumb = oldThumb;
+                    if (fThumb == null) post.Thumb = currentThumb;
                          else   //if (fThumb != null) 
                         {
                             string extension = Path.GetExtension(fThumb.FileName);

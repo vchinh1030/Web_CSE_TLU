@@ -31,7 +31,14 @@ namespace Web_CSE
             var stringConnectdb = Configuration.GetConnectionString("dbCSE_TLU");
             services.AddDbContext<CnttCseContext>(options => options.UseSqlServer(stringConnectdb));
             services.AddMvc();
-            services.AddSession();
+            //services.AddSession();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddControllersWithViews();
             services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] {UnicodeRanges.All}));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMemoryCache();
