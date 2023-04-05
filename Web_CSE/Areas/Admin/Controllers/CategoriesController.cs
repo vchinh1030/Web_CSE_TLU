@@ -19,6 +19,7 @@ using PagedList.Core;
 namespace Web_CSE.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
      public class CategoriesController : Controller
     {
         private readonly CnttCseContext _context;
