@@ -4,6 +4,8 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@if (User.Identity.IsAuthenticated)
+{
 
 <h1>Thêm bài viết</h1>
 
@@ -11,44 +13,44 @@
 <div class="row">
     <div class="col-md-12">
         <form asp-controller="Posts" asp-action="Create" method="post" enctype="multipart/form-data">
-@*            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Describe" class="control-label"></label>
-                <input asp-for="Describe" class="form-control" />
-                <span asp-validation-for="Describe" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountId" class="control-label"></label>
-                <select asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatId" class="control-label"></label>
-                <select asp-for="CatId" class ="form-control" asp-items="ViewBag.CatId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumb" class="control-label"></label>
-                <input  name ="fThumb" type="file" asp-for="Thumb" class="form-control" />
-                <span asp-validation-for="Thumb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-*@
+            @*            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Describe" class="control-label"></label>
+                    <input asp-for="Describe" class="form-control" />
+                    <span asp-validation-for="Describe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AccountId" class="control-label"></label>
+                    <select asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatId" class="control-label"></label>
+                    <select asp-for="CatId" class ="form-control" asp-items="ViewBag.CatId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Thumb" class="control-label"></label>
+                    <input  name ="fThumb" type="file" asp-for="Thumb" class="form-control" />
+                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            *@
             <div>
                 <div class="form-group">
                     <dl class="row">
@@ -72,7 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                          <span asp-validation-for="Contents" class="text-danger"></span>
+                            <span asp-validation-for="Contents" class="text-danger"></span>
                         </dd>
                         <dt class="col-sm-2">
                             <label asp-for="Thumb" class="control-label">Ảnh đại diện </label>
@@ -82,14 +84,15 @@
                             @* <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />*@
                             <input name="fThumb" type="file" asp-for="Thumb" class="form-control" />
                         </dd>
+                        @*<dt class="col-sm-2">
+                                <label asp-for="AccountId" class="control-label"></label>
+                            </dt>
+                            <dd class="col-sm-10">
+
+                                <label asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></label>
+                            </dd>*@
                         <dt class="col-sm-2">
-                            <label asp-for="AccountId" class="control-label"></label>
-                        </dt>
-                        <dd class="col-sm-10">
-                            <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
-                        </dd>
-                        <dt class="col-sm-2">
-                            <label asp-for="CatId" class="control-label"></label>
+                            <label asp-for="CatId" class="control-label">Danh mục</label>
                         </dt>
                         <dd class="col-sm-10">
                             <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
@@ -143,7 +146,7 @@
         //            withCredentials: false
         //        }).then(res => {
         //            var resData = res.data;
-        //            resData.default = resData.url; 
+        //            resData.default = resData.url;
         //            resolve(resData);
         //        }).catch(error => {
         //            reject(error)
@@ -252,12 +255,12 @@
                     '|', 'link', 'uploadImage', 'ckfinder','insertTable', 'mediaEmbed',
                     '|', 'bulletedList', 'numberedList', 'outdent', 'indent', 'undo', 'redo'
                 ]
-            }, 
+            },
             //ckfinder: {
             //   // tokenUrl: 'https://localhost:5001/rich-text/',
             //    uploadUrl: 'https://localhost:5001/Posts/UploadImage2',
             //},
-           
+
             //image: {
             //    uploadUrl: 'https://localhost:5001/rich-text/'
             //},
@@ -275,3 +278,4 @@
         });
 
 </script>
+}
