@@ -77,6 +77,7 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 post.Thumb = "default.jpg";
                 post.Contents= Request.Form["Contents"];
+                post.AccountId = HttpContext.Session.GetInt32("AccountId");
                 string pattern = "<img.*?>";
                 string replacement = "";
                 Regex rgx = new Regex(pattern);
@@ -97,7 +98,8 @@ namespace Web_CSE.Areas.Admin.Controllers
                     string image = Utilities.SEOUrl(post.Title) + extension;
                     post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                 }
-                post.Alias = Utilities.SEOUrl(post.Title);
+                if(post.Title!=null) post.Alias = Utilities.SEOUrl(post.Title);
+
                 post.CreatedAt = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -217,8 +219,8 @@ namespace Web_CSE.Areas.Admin.Controllers
                             string image = Utilities.SEOUrl(post.Title) + extension;
                             post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                         }
-                    
-                    post.Alias = Utilities.SEOUrl(post.Title);
+
+                    if (post.Title != null) post.Alias = Utilities.SEOUrl(post.Title);
                     post.CreatedAt = DateTime.Now;
 
                     _context.Update(post);

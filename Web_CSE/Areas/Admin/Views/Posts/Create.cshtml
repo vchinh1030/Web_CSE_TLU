@@ -82,14 +82,15 @@
                             @* <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />*@
                             <input name="fThumb" type="file" asp-for="Thumb" class="form-control" />
                         </dd>
-                        <dt class="col-sm-2">
+                        @*<dt class="col-sm-2">
                             <label asp-for="AccountId" class="control-label"></label>
                         </dt>
                         <dd class="col-sm-10">
-                            <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
-                        </dd>
+                            
+                            <label asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></label>
+                        </dd>*@
                         <dt class="col-sm-2">
-                            <label asp-for="CatId" class="control-label"></label>
+                            <label asp-for="CatId" class="control-label">Danh mục</label>
                         </dt>
                         <dd class="col-sm-10">
                             <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
