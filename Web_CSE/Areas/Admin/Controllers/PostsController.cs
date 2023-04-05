@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -78,7 +78,17 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 post.Thumb = "default.jpg";
                 post.Contents= Request.Form["Contents"];
-                post.AccountId = HttpContext.Session.GetInt32("AccountId");
+
+                string accountIdString = HttpContext.Session.GetString("AccountId");
+                int accountId;
+                if (int.TryParse(accountIdString, out accountId))
+                {
+                    // Sử dụng accountId ở đây
+                    post.AccountId = accountId;
+                }
+
+
+
                 string pattern = "<img.*?>";
                 string replacement = "";
                 Regex rgx = new Regex(pattern);
