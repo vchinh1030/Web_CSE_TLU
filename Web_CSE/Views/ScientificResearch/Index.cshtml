@@ -1,27 +1,53 @@
-﻿@model IEnumerable<Web_CSE.Models.Post>
-
-@{
-    ViewData["Title"] = "Nghiên cứu khoa học";
+﻿@{
+    ViewData["Title"] = "Các hướng nghiên cứu Công nghệ thông tin";
 }
+<html lang="en">
 
-<table class="table">
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @*@Html.DisplayFor(modelItem => item.Thumb)*@
-                    <img src="/images/posts/@item.Thumb" alt="@item.Thumb" style="width:200px; max-height: 200px" />
-                </td>
-                <td>
-                    <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-                </td>
-                <td>
-                    <div style="width: 150px;margin-top: 200px">
-                        <div class="bottom: 0px"> <a asp-action="Details" asp-route-id="@item.PostId"><i>> Xem chi tiết</i></a></div>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Các hướng nghiên cứu Công nghệ thông tin</h1>
+    <p><strong>Một số hướng nghiên cứu về Công nghệ thông tin</strong></p>
+    <p>Trí tuệ nhân tạo</p>
+    <p>Học máy và khai phá dữ liệu</p>
+    <p>Thư viện số và web ngữ nghĩa</p>
+    <p>Thị giác máy và nhận dạng mẫu</p>
+    <p>Xử lý ngôn ngữ tự nhiên</p>
+    <p>Khai phá văn bản và web</p>
+    <p>Khai phá mạng xã hội</p>
+    <p>Tin sinh học</p>
+    <p>Mạng nơ-ron và tính toán tiến hóa</p>
+    <p>Các hệ thống thông tin thông minh</p>
+    <p>Mạng máy tính và anh ninh mạng</p>
+    <p>Mạng cảm biến không dây</p>
+    <p><strong>Ứng dụng Công nghệ thông tin trong Thủy lợi</strong></p>
+    <p>Quản lý và điều hành trên Internet trong các tổ chức đào tạo và cơ quan quản lý nhà nước</p>
+    <p>Phần mềm hỗ trợ tính toán kỹ thuật, quản lý và vận hành công trình</p>
+    <p>Mô hình hóa và mô phỏng các công trình thủy lợi</p>
+    <p>GIS trong quản lý đê điều và quản lý thông tin thiên tai</p>
+    <p>Các phương pháp học máy trong dự báo thủy văn và dòng chảy</p>
+    <p>Xây dựng cơ sở dữ liệu và khai phá dữ liệu trong thủy lợi, thủy điện và tài nguyên nước</p>
+    <p><strong>Một số hướng nghiên cứu về Toán học</strong></p>
+    <p>Toán cho thủy lực, mô hình toán của dòng chảy hai pha</p>
+    <p>Proper Orthogonal Decomposition (POD), Reduced Order Modeling (ROM)</p>
+    <p>Nghiên cứu biểu diễn các dạng nghiệm suy rộng</p>
+    <p>Lý thuyết hệ động lực vô hạn chiều</p>
+    <p>Lý thuyết điều khiển phương trình đạo hàm riêng</p>
+    <p>Tính giải được và tính ổn định nghiệm của bài toán phương trình vi phân bậc phân số</p>
+    <p>Bài toán tập hút cho các bao hàm thức vi phân</p>
+    <p>Ổn định các đặc trưng của phân phối xác suất</p>
+    <figure class="table"><table><tbody><tr><td>&nbsp;</td></tr></tbody></table></figure>
+    <p>&nbsp;</p>
+    <p><br>&nbsp;</p>
+   <div>
+        <div style="margin-bottom: 20px">
+            <a asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true" style="text-align: right; display: block">  Trở lại trang trước</i></a>
+        </div>
+    </div>
+</body>
+
+</html>

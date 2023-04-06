@@ -9,20 +9,22 @@ using Web_CSE.Models;
 
 namespace Web_CSE.Controllers
 {
-    public class GreetingsController : Controller
+    public class GTOrganizationController : Controller
     {
         private readonly CnttCseContext _context;
 
-        public GreetingsController(CnttCseContext context)
+        public GTOrganizationController(CnttCseContext context)
         {
             _context = context;
         }
 
-        // GET: Greetings
+        // GET: GTOrganization
         public async Task<IActionResult> Index()
         {
-            var cnttCseContext = _context.Posts.Where(p => p.CatId == 13);
+            var cnttCseContext = _context.Posts.Where(p => p.CatId == 14);
             return View(await cnttCseContext.ToListAsync());
         }
+
+       
     }
 }
