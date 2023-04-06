@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Web_CSE.Helpers;
+using System.Security.Claims;
 
 namespace Web_CSE.Areas.Admin.Controllers
 {
@@ -35,8 +36,27 @@ namespace Web_CSE.Areas.Admin.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-            var cnttCseContext = _context.Posts.Include(p => p.Account).Include(p => p.Cat);
-            return View(await cnttCseContext.ToListAsync());
+                IQueryable<Post> posts;
+
+                if (User.IsInRole("Admin"))
+                {
+                    // Nếu người dùng hiện tại là quản trị viên, trả về tất cả các bài viết
+                    posts = _context.Posts.Include(p => p.Account).Include(p => p.Cat);
+                }
+                else
+                {
+                    // Nếu người dùng hiện tại không phải là quản trị viên, trả về các bài viết của người dùng hiện tại
+                    var userIdString  = HttpContext.Session.GetString("AccountId");
+                    int? userId = null;
+                    int userIdParsed;
+                    if (int.TryParse(userIdString, out userIdParsed))
+                    {
+                        userId = userIdParsed;
+                    }
+                     posts = _context.Posts.Where(p => p.AccountId == userId).Include(p => p.Account).Include(p => p.Cat);
+                }
+                  return View(await posts.ToListAsync());
+
         }
 
         // GET: Posts/Details/5

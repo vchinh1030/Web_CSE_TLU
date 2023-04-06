@@ -29,16 +29,22 @@
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
+           @* phần password *@
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="changePasswordCheckbox" onchange="togglePasswordInput()">
+                    <label class="form-check-label" for="changePasswordCheckbox">
+                    Bạn Có Muốn Đổi Mật Khẩu Không ?
+                    </label>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Salt" class="control-label"></label>
-                <input asp-for="Salt" class="form-control" />
-                <span asp-validation-for="Salt" class="text-danger"></span>
+            <div class="form-group" id="passwordInput" style="display:none;">
+                <label for="inputPassword">Password</label>
+                <input class="form-control" id="inputPassword" name="Password">
             </div>
+
+
+
             <div class="form-group">
                 <label asp-for="Active" class="control-label"></label>
                 <input asp-for="Active" class="form-control" />
@@ -65,3 +71,14 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
+<script>
+    function togglePasswordInput() {
+        var passwordInput = document.getElementById("passwordInput");
+        if (document.getElementById("changePasswordCheckbox").checked) {
+            passwordInput.style.display = "block";
+        } else {
+            passwordInput.style.display = "none";
+        }
+        }
+</script>

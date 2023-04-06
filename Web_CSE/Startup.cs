@@ -52,6 +52,8 @@ namespace Web_CSE
                     config.LogoutPath = "/dang-xuat.html";
                     config.AccessDeniedPath = "/han-che-truy-cap.html";
                 });
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddRazorPages();
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
