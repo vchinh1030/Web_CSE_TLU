@@ -217,8 +217,13 @@
                                
                                 @* <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"> *@
-                                <div style="background-color: rgba(0,0,0,.5); border:1px">
+                                <div>
                                     <i class="fa-solid fa-user "></i>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <span class="navbar-text">Xin chào, @User.Identity.Name !</span>
+                                    }
+
                                 </div>
                             </a>
                             <!-- Dropdown - User Information -->

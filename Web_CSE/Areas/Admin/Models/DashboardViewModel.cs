@@ -7,5 +7,6 @@ namespace Web_CSE.Areas.Admin.Models
     {
         public List<Account> Accounts { get; set; }
         public NotificationViewModel Notification { get; set; }
+
     }
 }

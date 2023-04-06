@@ -3,14 +3,15 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-<h1>thoonng báo</h1>
-   @if (Model.Notification != null)
+@* <p>Xin chào, @ViewBag.CurrentUser.UserName</p> *@
+
+   @*if (Model.Notification != null)
     {
         <div class="alert alert-@Model.Notification.Type">@Model.Notification.Message</div>
     }
     else{
         <h1>null</h1>
-    }
+    } *@
 <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Tài Khoản</h1>

@@ -25,7 +25,6 @@ namespace Web_CSE.Areas.Admin.Controllers
     public class AccountsController : Controller
     {
         private readonly CnttCseContext _context;
-
         public AccountsController(CnttCseContext context)
         {
             _context = context;
