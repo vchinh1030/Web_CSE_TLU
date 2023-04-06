@@ -26,9 +26,6 @@
                                                 Tiêu đề
                                             </th>
                                             <th>
-                                                Nội dung
-                                            </th>
-                                            <th>
                                                 Ngày đăng
                                             </th>
                                             <th>
@@ -51,14 +48,9 @@
                                                     <td style="max-width:300px">
                                                     @Html.DisplayFor(modelItem => item.Title)
                                                 </td>
-                                                    <td style="max-width:300px">
-                                                    @Html.Raw(item.ShortContent)
-                                                </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.CreatedAt)
-                                                </td>
-
-                                            
+                                                </td>                                            
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Account.FullName)
                                                 </td>

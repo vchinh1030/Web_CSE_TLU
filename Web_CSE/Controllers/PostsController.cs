@@ -205,7 +205,7 @@ namespace Web_CSE.Controllers
                 try
                 {
                     
-                    if (post.Contents == null) post.Contents = "Bi loi";
+                    if (post.Contents == null) post.Contents = "Trang hiện đang lỗi, vui lòng thử lại sau.";
                     if (fThumb == null) post.Thumb = oldThumb;
                          else   //if (fThumb != null) 
                         {

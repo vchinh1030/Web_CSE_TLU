@@ -25,7 +25,7 @@
         </div>
         <div class="list-login">
             <span>(+) |</span>
-            <a class="btn-login" title="Login">Login</a>
+            <a class="btn-login" href="admin/ "title="Login">Login</a>
             <span>| |</span>
             <span>Ngôn ngữ: </span>
             <a href="#"><img class="icon-language" src="	http://cse.tlu.edu.vn/cse/assets/images/icons/icon-lang-vi.png"
@@ -50,9 +50,9 @@
         <div id="header" class="container">
             <a href="#"><img class="logo-page" src="http://cse.tlu.edu.vn/cse/assets/images/logo.jpg" alt=""></a>
             <ul class="list-navigation">
-                <li class="sub-nav"><a href="#">TRANG CHỦ</a></li>
+                <li class="sub-nav"><a href="./">TRANG CHỦ</a></li>
                 <li class="sub-nav">
-                    <a href="">GIỚI THIỆU</a>
+                    <a href="@Url.Action("Index", "Introduces")">GIỚI THIỆU</a>
                     <ul class="list-child-nav">
                         <li><a href="">Logo khoa CNTT</a></li>
                         <li><a href="">Lời chào mừng</a></li>
@@ -61,7 +61,7 @@
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">NGHIÊN CỨU KHOA HỌC</a>
+                    <a href="@Url.Action("Index", "ScientificResearch")">NGHIÊN CỨU KHOA HỌC</a>
                     <ul class="list-child-nav">
                         <li><a href="">Các đề tài,dự án</a></li>
                         <li><a href="">Thông tin seminar</a></li>
@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">ĐÀO TẠO</a>
+                    <a href="@Url.Action("Index", "Train")">ĐÀO TẠO</a>
                     <ul class="list-child-nav">
                         <li><a href="">Đào tạo đại học</a></li>
                         <li><a href="">Đào tạo sau đại học</a></li>
@@ -82,7 +82,7 @@
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">BỘ MÔN-TRUNG TÂM</a>
+                    <a href="@Url.Action("Index", "Subjects")">BỘ MÔN-TRUNG TÂM</a>
                     <ul class="list-child-nav">
                         <li><a href="">CN phần mềm</a></li>
                         <li><a href="">Hệ thống thông tin</a></li>
@@ -93,13 +93,13 @@
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">TUYỂN SINH</a>
+                    <a href="@Url.Action("Index", "Admissions")">TUYỂN SINH</a>
                     <ul class="list-child-nav">
                         <li><a href="">Nhóm ngành CNTT</a></li>
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">SINH VIÊN</a>
+                    <a href="@Url.Action("Index", "Students")">SINH VIÊN</a>
                     <ul class="list-child-nav">
                         <li><a href="">Tài liệu sinh viên</a></li>
                         <li><a href="">Tổ tư vấn học tập</a></li>
@@ -108,14 +108,14 @@
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">TIN TỨC</a>
+                    <a href="@Url.Action("Index", "News")">TIN TỨC</a>
                     <ul class="list-child-nav">
                         <li><a href="">Sự kiện</a></li>
                         <li><a href="">CSE trên báo</a></li>
                     </ul>
                 </li>
                 <li class="sub-nav">
-                    <a href="">THÔNG BÁO</a>
+                    <a href="@Url.Action("Index", "Notification")">THÔNG BÁO</a>
                     <ul class="list-child-nav">
                         <li><a href="">Thông báo</a></li>
                         <li><a href="">TB đào tạo</a></li>
@@ -125,7 +125,7 @@
                         <li><a href="">Thông báo khác</a></li>
                     </ul>
                 </li>
-                <li class="sub-nav"><a href="">LIÊN HỆ</a></li>
+                <li class="sub-nav"><a href="@Url.Action("Index", "Contact")">LIÊN HỆ</a></li>
             </ul>
         </div>
     </header>
@@ -196,71 +196,6 @@
         </div>
     </footer>
 
-    <div class="modal">
-        <div class="modal-container">
-            <div class="modal-menu">
-                <div class="modal-full">
-                    <span class="material-symbols-outlined">
-                        open_in_full
-                    </span>
-                </div>
-
-                <div class="modal-close">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                </div>
-            </div>
-
-            <header class="modal-header">
-                <span class="material-symbols-outlined">
-                    account_circle
-                </span>
-                User LogIn
-            </header>
-
-@*            <div class="modal-body">
-                <form asp-area="Admin" asp-controller="Accounts" asp-action="Login" method="post">
-=======
-            <div class="modal-body">
-                <form  method="post">
->>>>>>> Feature/Post
-                    <div class="form-item login-input">
-                        <label  for="login-username" class="label-login">
-                            Username:
-                        </label>
-                        <input id="login-username" type="text" asp-for="Email" class="modal-input">
-                    </div>
-                    <div class="form-item login-input">
-                        <label  for="login-password" class="label-login">
-                            Password:
-                        </label>
-                        <input id="login-password" type="password" asp-for="Password" class="modal-input">
-                    </div>
-                    <div class="form-item">
-<<<<<<< HEAD
-                        <button class="login">Đăng nhập</button>
-                        <a href="#" class="login-cancel">Cancel</a>
-=======
-                        <button asp-controller="" asp-action="" class="login">Login</button>
-                        <a class="login-cancel">Cancel</a>
->>>>>>> Feature/Post
-                    </div>
-                    <div class="form-item">
-                        <input type="checkbox">Remmember Login
-                    </div>
-<<<<<<< HEAD
-                    <div class="form-item">
-                        <a href="#">Reset Password</a>
-                    </div>
-                    <p class="mg-b-0">@ViewBag.Error</p>
-                </form>*@
-            </div>
-        </div>
-    </div>
-
-
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @*<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>*@
@@ -270,7 +205,6 @@
     <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/ckeditor/translations/vi.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
 
 </body>
 

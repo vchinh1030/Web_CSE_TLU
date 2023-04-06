@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Web_CSE.Models.Post>
+
+@{
+    ViewData["Title"] = "Tuyển sinh";
+}
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Thumb)*@
+                    <img src="/images/posts/@item.Thumb" alt="@item.Thumb" style="width:200px; max-height: 200px" />
+                </td>
+                <td>
+                    <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+                </td>
+                <td>
+                    <div style="width: 150px;margin-top: 200px">
+                        <div class="bottom: 0px"> <a asp-action="Details" asp-route-id="@item.PostId"><i>> Xem chi tiết</i></a></div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
