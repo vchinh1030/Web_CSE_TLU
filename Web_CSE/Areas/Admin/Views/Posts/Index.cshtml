@@ -4,9 +4,13 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+    
+    @if (User.Identity.IsAuthenticated)
+{
+ 
 <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Bài Đăng</h6>
+                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Bài Đăng</h1>
                             <p>
                                 <a asp-action="Create">Thêm Mới</a>
                             </p>
@@ -68,3 +72,4 @@
                         </div>
                     </div>
 
+    }

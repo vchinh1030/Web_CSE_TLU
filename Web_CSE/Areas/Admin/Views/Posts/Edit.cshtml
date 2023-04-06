@@ -5,6 +5,8 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@if (User.Identity.IsAuthenticated)
+{
 
 <h1>Chỉnh sửa bài viết</h1>
 
@@ -12,50 +14,50 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-controller="Posts" asp-action="Edit"asp-route-id="@Model.PostId" method="post" enctype="multipart/form-data">
-@*            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PostId" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Contents" class="control-label"></label>
-                <input asp-for="Contents" class="form-control" />
-                <span asp-validation-for="Contents" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Author" class="control-label"></label>
-                <input asp-for="Author" class="form-control" />
-                <span asp-validation-for="Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AccountId" class="control-label"></label>
-                <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
-                <span asp-validation-for="AccountId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatId" class="control-label"></label>
-                <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
-                <span asp-validation-for="CatId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumb" class="control-label"></label>       
-                <input name="fThumb" type="file"asp-for="Thumb" class="form-control" />
-                <span asp-validation-for="Thumb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>*@
+        <form asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.PostId" method="post" enctype="multipart/form-data">
+            @*            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PostId" />
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Describe" class="control-label"></label>
+                    <input asp-for="Describe" class="form-control" />
+                    <span asp-validation-for="Describe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AccountId" class="control-label"></label>
+                    <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
+                    <span asp-validation-for="AccountId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatId" class="control-label"></label>
+                    <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+                    <span asp-validation-for="CatId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Thumb" class="control-label"></label>
+                    <input name="fThumb" type="file"asp-for="Thumb" class="form-control" />
+                    <span asp-validation-for="Thumb" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>*@
 
 
             <div>
@@ -83,24 +85,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <span  asp-validation-for="Contents" class="text-danger"></span>
+                            <span asp-validation-for="Contents" class="text-danger"></span>
                         </dd>
-                       
+
                         <dt class="col-sm-2">
                             <label asp-for="Thumb" class="control-label">Ảnh đại diện</label>
                         </dt>
                         <dd class="col-sm-10">
                             @* @Html.DisplayFor(model => model.Thumb)*@
-                             <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
+                            <img src="/images/posts/@Model.Thumb" alt="@Model.Thumb" style="max-width:200px" />
                             <input name="fThumb" type="file" asp-for="Thumb" class="form-control" value="@Model.Thumb" />
-                            <input name="currentThumb" value="@Model.Thumb" type="hidden"/>
+                            <input name="currentThumb" value="@Model.Thumb" type="hidden" />
                         </dd>
-                        <dt class="col-sm-2">
-                            <label asp-for="AccountId" class="control-label">Tài khoản</label>
-                        </dt>
-                        <dd class="col-sm-10">
-                            <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
-                        </dd>
+                        <input name="Author" value="@Model.AccountId" type="hidden" />
                         <dt class="col-sm-2">
                             <label asp-for="CatId" class="control-label">Danh mục</label>
                         </dt>
@@ -265,7 +262,7 @@
             //},
             toolbar: {
 
-                items: [                  
+                items: [
                     '|', 'heading',
                     '|', 'bold', 'italic',
                     '|', 'link', 'uploadImage', 'ckfinder', 'insertTable', 'mediaEmbed',
@@ -295,3 +292,4 @@
         });
 
 </script>
+}

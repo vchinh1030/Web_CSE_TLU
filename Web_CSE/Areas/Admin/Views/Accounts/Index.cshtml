@@ -6,7 +6,7 @@
 
 <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Tài Khoản</h6>
+                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Tài Khoản</h1>
                             <p>
                                 <a asp-action="Create">Thêm Mới</a>
                             </p>
@@ -42,12 +42,12 @@
                                                     @Html.DisplayFor(modelItem => item.CreatedAt)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Role.RoleId)
+                                                    @Html.DisplayFor(modelItem => item.Role.RoleName)
                                                 </td>
                                                 <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.RoleId">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.RoleId">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+                                                    <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
+                                                    <a asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
                                                 </td>
                                             </tr>
                                         }   

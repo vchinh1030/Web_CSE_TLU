@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,6 +18,7 @@ using Web_CSE.Helpers;
 namespace Web_CSE.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
      public class PostsController : Controller
     {
         private readonly CnttCseContext _context;
@@ -77,6 +78,17 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 post.Thumb = "default.jpg";
                 post.Contents= Request.Form["Contents"];
+
+                string accountIdString = HttpContext.Session.GetString("AccountId");
+                int accountId;
+                if (int.TryParse(accountIdString, out accountId))
+                {
+                    // Sử dụng accountId ở đây
+                    post.AccountId = accountId;
+                }
+
+
+
                 string pattern = "<img.*?>";
                 string replacement = "";
                 Regex rgx = new Regex(pattern);
@@ -97,7 +109,8 @@ namespace Web_CSE.Areas.Admin.Controllers
                     string image = Utilities.SEOUrl(post.Title) + extension;
                     post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                 }
-                post.Alias = Utilities.SEOUrl(post.Title);
+                if(post.Title!=null) post.Alias = Utilities.SEOUrl(post.Title);
+
                 post.CreatedAt = DateTime.Now;
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -190,6 +203,15 @@ namespace Web_CSE.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 string currentThumb = Request.Form["currentThumb"];
+                string authorId = Request.Form["Author"];
+                int author;
+                if (int.TryParse(authorId, out author))
+                {
+                    
+                    post.AccountId = author;
+                }
+
+                post.AccountId = author;
                 //var currentPost = await _context.Posts.FindAsync(id);
                 string pattern = "<img.*?>";
                 string replacement = "";
@@ -205,20 +227,20 @@ namespace Web_CSE.Areas.Admin.Controllers
                 }
 
                 // post.ShortContent = post.Contents.Substring(0,150).Trim()+"...";
-                string oldThumb = currentThumb;
+                
                 try
                 {
                     
                     if (post.Contents == null) post.Contents = "Bi loi";
-                    if (fThumb == null) post.Thumb = oldThumb;
+                    if (fThumb == null) post.Thumb = currentThumb;
                          else   //if (fThumb != null) 
                         {
                             string extension = Path.GetExtension(fThumb.FileName);
                             string image = Utilities.SEOUrl(post.Title) + extension;
                             post.Thumb = await Utilities.UploadFile(fThumb, @"posts", image.ToLower());
                         }
-                    
-                    post.Alias = Utilities.SEOUrl(post.Title);
+
+                    if (post.Title != null) post.Alias = Utilities.SEOUrl(post.Title);
                     post.CreatedAt = DateTime.Now;
 
                     _context.Update(post);

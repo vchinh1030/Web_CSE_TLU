@@ -8,20 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Dashboard</title>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <title> Admin  - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     @* <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" type="text/css"> *@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
     <script src="~/ckeditor/ckeditor.js"></script>
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="~/css/style/ckeditor-box.css " rel="stylesheet" />
     <link href="~/lib/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/css/style/posts.css" rel="stylesheet"/>
+
     @* <link href="~/css/style/posts.css" rel="stylesheet" /> *@
 
 </head>
@@ -206,7 +207,7 @@
                             </div>
                         </li> *@
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="topbar-divider d-none d-sm-block"></li>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -215,7 +216,7 @@
                                
                                 @* <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg"> *@
-                                <div style="background-color: rgba(0,0,0,.5), border:1px">
+                                <div style="background-color: rgba(0,0,0,.5); border:1px">
                                     <i class="fa-solid fa-user "></i>
                                 </div>
                             </a>
@@ -271,7 +272,7 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
+        </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -317,6 +318,10 @@
     <script src="~/js/demo/chart-pie-demo.js"></script>
     <script src="~/js/demo/datatables-demo.js"></script>
 
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/translations/vi.js"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -50,24 +53,41 @@ namespace Web_CSE.Areas.Admin.Controllers
         [AllowAnonymous]
         [Route("dang-nhap.html", Name = "Login")]
 
-        public async Task<IActionResult> Login(Models.LoginViewModel model, string returnUrl = null)
-        {
+    public async Task<IActionResult> Login(Models.LoginViewModel model, string returnUrl = null)
+    {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Account kh = _context.Accounts
-                    .Include(p => p.Role)
-                    .SingleOrDefault(p => p.Email.ToLower() == model.Email.ToLower().Trim());
-                    if (kh == null)
+                    if (model.Email.Contains(" "))
                     {
-                        ViewBag.Error = "Email chưa chính xác";
+                        ModelState.AddModelError("Email", "Email không được chứa khoảng trắng");
                         return View(model);
                     }
-                    string pass = (model.Password.Trim());
-                    if (kh.Password != pass)
+                    string email = model.Email.ToLower().Trim().Replace(" ", "");
+                    Account kh = _context.Accounts
+                        .Include(p => p.Role)
+                        .SingleOrDefault(p => p.Email.ToLower() == email);
+                    if (kh == null)
                     {
-                        ViewBag.Error = "Mật khẩu chưa chính xác";
+                        ModelState.AddModelError("Email", "Email chưa chính xác");
+                        return View(model);
+                    }
+                      if (model.Password.Contains(" "))
+                    {
+                        ModelState.AddModelError("Password", "Mật khẩu không được chứa khoảng trắng");
+                        return View(model);
+                    }
+                    string pass = model.Password.Trim().Replace(" ", ""); // Loại bỏ khoảng trắng đầu và cuối, và khoảng trắng trong chuỗi password
+                    if (string.IsNullOrEmpty(pass))
+                    {
+                        ModelState.AddModelError("Password", "Vui lòng nhập Password.");
+                        return View(model);
+                    }
+                    string hashedPassword = HashPassword(pass, kh.Salt);
+                    if (kh.Password != hashedPassword)
+                    {
+                        ModelState.AddModelError("Password", "Mật khẩu chưa chính xác");
                         return View(model);
                     }
                     //Đăng nhập thành công
@@ -96,12 +116,26 @@ namespace Web_CSE.Areas.Admin.Controllers
                     var userPrincipal = new ClaimsPrincipal(new[] { grandmaIdentity });
                     await HttpContext.SignInAsync(userPrincipal);
 
-
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
                     return RedirectToAction("Index", "Posts", new { Area = "Admin" });
+                }
+                 else if (string.IsNullOrWhiteSpace(model.Email) && string.IsNullOrWhiteSpace(model.Password))
+                {
+                    ModelState.AddModelError(string.Empty, "Vui lòng nhập Email và Password.");
+                    return View(model);
+                }
+                else if (string.IsNullOrWhiteSpace(model.Email))
+                {
+                    ModelState.AddModelError("Email", "Vui lòng nhập Email.");
+                    return View(model);
+                }
+                else if (string.IsNullOrWhiteSpace(model.Password))
+                {
+                    ModelState.AddModelError("Password", "Vui lòng nhập Password.");
+                    return View(model);
                 }
             }
             catch
@@ -110,8 +144,8 @@ namespace Web_CSE.Areas.Admin.Controllers
             }
             // return RedirectToAction("Login", "Accounts", new { Area = "Admin" });
             return RedirectToAction("Index", "Posts", new { Area = "Admin" });
-        }
-        
+    }
+
         //Đăng xuất 
         [AllowAnonymous]
         [Route("dang-xuat.html", Name = "Logout")]
@@ -152,7 +186,7 @@ namespace Web_CSE.Areas.Admin.Controllers
         // GET: Admin/Accounts/Create
         public IActionResult Create()
         {
-            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId");
+            ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleName");
             return View();
         }
 
@@ -165,13 +199,45 @@ namespace Web_CSE.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                account.CreatedAt = DateTime.Now;
+               
+                // Tạo salt ngẫu nhiên sử dụng RNGCryptoServiceProvider
+                byte[] saltBytes = new byte[16];
+                using (var rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(saltBytes);
+                }
+                  string salt = Convert.ToBase64String(saltBytes);
+                 // Ma hoa mat khau truoc khi luu vao co so du lieu
+                string hashedPassword = HashPassword(account.Password, salt);
+                account.Password = hashedPassword;
+                account.Salt = salt;
                 _context.Add(account);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", account.RoleId);
             return View(account);
         }
+
+        // Ham ma hoa mat khau bang SHA256
+       public string HashPassword(string password, string salt)
+        {
+            byte[] saltBytes = Convert.FromBase64String(salt);
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password.Trim()); //loại bỏ khoảng trắng cuối cùng nếu có
+            byte[] saltedPasswordBytes = new byte[saltBytes.Length + passwordBytes.Length];
+
+            Buffer.BlockCopy(saltBytes, 0, saltedPasswordBytes, 0, saltBytes.Length);
+            Buffer.BlockCopy(passwordBytes, 0, saltedPasswordBytes, saltBytes.Length, passwordBytes.Length);
+
+            using (var sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(saltedPasswordBytes);
+                return Convert.ToBase64String(hashedBytes);
+            }
+        }
+
 
         // GET: Admin/Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)

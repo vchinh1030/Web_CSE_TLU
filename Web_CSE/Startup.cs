@@ -30,7 +30,15 @@ namespace Web_CSE
         {
             var stringConnectdb = Configuration.GetConnectionString("dbCSE_TLU");
             services.AddDbContext<CnttCseContext>(options => options.UseSqlServer(stringConnectdb));
-            services.AddSession();
+            services.AddMvc();
+            //services.AddSession();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            services.AddControllersWithViews();
             services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] {UnicodeRanges.All}));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMemoryCache();
@@ -51,6 +59,12 @@ namespace Web_CSE
                 options.ExpireTimeSpan = TimeSpan.FromDays(150);
                 options.LoginPath = "/dang-nhap.html";
             });
+            //services.AddSession(options =>
+            //{
+            //    options.IdleTimeout = TimeSpan.FromMinutes(30);
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
             //services.AddControllersWithViews();
         }
 
