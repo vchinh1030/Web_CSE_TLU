@@ -5,27 +5,29 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Chi tiết quyền truy cập</h1>
 
 <div>
-    <h4>Role</h4>
+
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoleName)
+            <label class="control-label">Tên quyền truy cập</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RoleName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoleDescription)
+            <label class="control-label">Chi tiết quyền truy cập</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RoleDescription)
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.RoleId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+    <div class="post-index">
+        <a asp-action="Edit" asp-route-id="@Model.RoleId" class="details-post-2">Sửa quyền truy cập</a>
+        <a asp-action="Index" class="back-to-list"><i class="fa fa-arrow-left" aria-hidden="true"></i>Quay lại</a>
+    </div>
+    

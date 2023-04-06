@@ -5,66 +5,57 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Xóa tài khoản</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có chắc chắn muốn xóa?</h3>
 <div>
-    <h4>Account</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
+            <label asp-for="Password" class="control-label">Tên đầy đủ</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FullName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            <label asp-for="Password" class="control-label">Email</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
+            <label asp-for="Password" class="control-label">Số điện thoại</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Phone)
         </dd>
+
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Salt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
+            <label asp-for="Password" class="control-label">Kích hoạt</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Active)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            <label asp-for="Password" class="control-label">Thời gian tạo</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CreatedAt)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
+            <label asp-for="Password" class="control-label">Quyền</label>
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Role.RoleId)
+            @Html.DisplayFor(model => model.Role.RoleName)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="AccountId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <div class="post-index">
+            <input type="hidden" asp-for="AccountId" />
+            <input type="submit" value="Xóa tài khoản" class="btn btn-danger" />      
+            <a asp-action="Index" class="back-to-list"><i class="fa fa-arrow-left" aria-hidden="true"></i>Quay lại</a>
+        </div>
+        
     </form>
 </div>

@@ -9,7 +9,7 @@
                         <div class="card-header py-3">
                             <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Phân Quyền</h1>
                             <p>
-                                <a asp-action="Create">Thêm Mới</a>
+                                <a asp-action="Create" class="add-post"><i class="fa fa-plus" aria-hidden="true"></i> Thêm quyền truy cập</a>
                             </p>
                         </div>
                         <div class="card-body">
@@ -33,9 +33,9 @@
                                                     @Html.DisplayFor(modelItem => item.RoleDescription)
                                                 </td>
                                                 <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.RoleId">Edit</a> |
-                                                    <a asp-action="Details" asp-route-id="@item.RoleId">Details</a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+                                                    <a asp-action="Edit" asp-route-id="@item.RoleId"class="icon"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                                    <a asp-action="Details" asp-route-id="@item.RoleId"class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.RoleId"class="icon"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         }   
