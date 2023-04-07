@@ -4,6 +4,10 @@
     ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@{
+    string password = Model.Password;
+    string maskedPassword = new string('*', password.Length);
+}
 
 <h1>Chi tiết tài khoản</h1>
 

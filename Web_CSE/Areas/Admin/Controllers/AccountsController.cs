@@ -12,26 +12,49 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Web_CSE.Areas.Admin.Models;
 using Web_CSE.Models;
 
 namespace Web_CSE.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
+
+
+
     public class AccountsController : Controller
     {
         private readonly CnttCseContext _context;
-
         public AccountsController(CnttCseContext context)
         {
             _context = context;
         }
 
+    // thông báo
+       public IActionResult AdminDashboard()
+        {
+            var notification = new NotificationViewModel
+            {
+                Message = "Đã thêm bài viết mới",
+                Type = "success"
+            };
+            var model = new DashboardViewModel
+            {
+                Notification = notification
+            };
+            return PartialView("_AdminDashboard", model);
+        }
+
         // GET: Admin/Accounts
-        public async Task<IActionResult> Index()
+       public async Task<IActionResult> Index()
         {
             var cnttCseContext = _context.Accounts.Include(a => a.Role);
-            return View(await cnttCseContext.ToListAsync());
+            var accounts = await cnttCseContext.ToListAsync();
+            var model = new DashboardViewModel
+            {
+                Accounts = accounts
+            };
+            return View(model);
         }
         // GET: Admin/Login
         [HttpGet]
@@ -161,13 +184,11 @@ namespace Web_CSE.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
-        
-        
+                
         // GET: Admin/Accounts/Details/5
-        public async Task<IActionResult> Details(int? id)
+       public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Accounts == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -179,10 +200,8 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             return View(account);
-        }
-
+}
         // GET: Admin/Accounts/Create
         public IActionResult Create()
         {
@@ -252,14 +271,17 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+             account.Password = "";
+            account.Salt = "";
             ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", account.RoleId);
             return View(account);
         }
 
+    
         // POST: Admin/Accounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+       [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AccountId,FullName,Email,Phone,Password,Salt,Active,CreatedAt,RoleId")] Account account)
         {
@@ -272,7 +294,35 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(account);
+                    // Lấy thông tin tài khoản cần sửa
+                    var accountToUpdate = await _context.Accounts.FindAsync(id);
+
+                    // Cập nhật các trường thông tin tài khoản
+                    accountToUpdate.FullName = account.FullName;
+                    accountToUpdate.Email = account.Email;
+                    accountToUpdate.Phone = account.Phone;
+                    accountToUpdate.Active = account.Active;
+                    accountToUpdate.RoleId = account.RoleId;
+
+                    // Nếu có thay đổi mật khẩu
+                    if (!string.IsNullOrEmpty(account.Password))
+                    {
+                        // Tạo salt ngẫu nhiên sử dụng RNGCryptoServiceProvider
+                        byte[] saltBytes = new byte[16];
+                        using (var rng = RandomNumberGenerator.Create())
+                        {
+                            rng.GetBytes(saltBytes);
+                        }
+                        string salt = Convert.ToBase64String(saltBytes);
+
+                        // Ma hoa mat khau truoc khi luu vao co so du lieu
+                        string hashedPassword = HashPassword(account.Password, salt);
+                        accountToUpdate.Password = hashedPassword;
+                        accountToUpdate.Salt = salt;
+                    }
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _context.Update(accountToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -291,6 +341,8 @@ namespace Web_CSE.Areas.Admin.Controllers
             ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId", account.RoleId);
             return View(account);
         }
+
+
 
         // GET: Admin/Accounts/Delete/5
         public async Task<IActionResult> Delete(int? id)

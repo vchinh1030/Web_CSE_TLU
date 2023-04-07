@@ -40,15 +40,6 @@ namespace Web_CSE.Areas.Admin.Controllers
             return View(await _context.Categories.ToListAsync());
         }
         
-        // public IActionResult Index(int? page) {
-        //     var pageNumber = page == null || page <= 0?1 : page.Value;
-        //     var pageSize = Utilities.PAGE_SIZE;
-        //     var IsCategories = _context.Categories
-        //             .OrderByDescending(x => x.CatId);
-        //     PagedList<Category> models = new PagedList<Category>(lsCategories, pageNumber, pageSize);
-        //     ViewBag.CurrentPage = pageNumber;
-        //     return View(models);
-
         // }
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -57,12 +48,16 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CatId == id);
+           
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.CatId == id);
             if (category == null)
             {
                 return NotFound();
             }
+            var parentCategory = await _context.Categories.FirstOrDefaultAsync(c => c.CatId == category.Parent);
+
+            ViewBag.ParentCategoryName = parentCategory == null ? "DANH MỤC GỐC" : parentCategory.CatName;
+
             return View(category);
         }
 
@@ -104,7 +99,7 @@ namespace Web_CSE.Areas.Admin.Controllers
             return View(category);
         }
         // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+       public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -115,9 +110,11 @@ namespace Web_CSE.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DanhMucGoc"] = new SelectList(_context.Categories.Where(x=>x.Levels == 1 && x.CatId != category.CatId), "CatId", "CatName", category.CatId);
+            var categories = await _context.Categories.Where(x => x.Levels == 1 && x.CatId != category.CatId).ToListAsync();
+            ViewData["DanhMucGoc"] = new SelectList(categories, "CatId", "CatName", category.Parent ?? 0);
             return View(category);
         }
+
 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -204,190 +201,6 @@ namespace Web_CSE.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        // private bool PostExists(int id)
-        // {
-        //   return _context.Categories.Any(e => e.CatId == id);
-        // }
     }
 
 }
-
-
-   
-
-    //     
-    //     [HttpPost]
-    //     [ValidateAntiForgeryToken]
-    //     public async Task<IActionResult> Create([Bind("CatId,Title,Contents,CreatedAt,ShortContent,AccountId,CatId,Thumb")] Post post,IFormFile fThumb)
-    //     {
-    //         if (ModelState.IsValid)
-    //         {
-    //             post.Thumb = "default.jpg";
-    //             post.Contents= Request.Form["Contents"];
-    //             string pattern = "<img.*?>";
-    //             string replacement = "";
-    //             Regex rgx = new Regex(pattern);
-    //             if (post.Contents.Length<= 150)
-    //             {
-    //                 post.ShortContent = rgx.Replace(post.Contents, replacement) + "...";
-    //             }
-    //             else
-    //             {
-                   
-    //                 post.ShortContent = rgx.Replace(post.Contents, replacement).Substring(0, 150);
-    //             }
-               
-    //             //post.ShortContent = post.Contents.Substring(0, 150).Trim() + "...";
-    //             if (fThumb != null)
-    //             {
-    //                 string extension = Path.GetExtension(fThumb.FileName);
-    //                 string image = Utilities.SEOUrl(post.Title) + extension;
-    //                 post.Thumb = await Utilities.UploadFile(fThumb, @"Categories", image.ToLower());
-    //             }
-    //             post.Alias = Utilities.SEOUrl(post.Title);
-    //             post.CreatedAt = DateTime.Now;
-    //             _context.Add(post);
-    //             await _context.SaveChangesAsync();
-    //             return RedirectToAction(nameof(Index));
-    //         }
-    //         ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "FullName", post.AccountId);
-    //         ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatName", post.CatId);
-    //         return View(post);
-    //     }
-
-    //     //[HttpPost]
-    //     //public ActionResult UploadImage2(List<IFormFile> files)
-    //     //{
-    //     //    var filepath = "";
-    //     //    foreach (IFormFile photo in Request.Form.Files)
-    //     //        try
-    //     //        {
-    //     //            string serverMapPath = Path.Combine(_env.WebRootPath, "Image", photo.FileName);
-    //     //            using (var stream = new FileStream(serverMapPath, FileMode.Create))
-    //     //            {
-    //     //                photo.CopyTo(stream);
-    //     //            }
-    //     //            filepath = HttpContext.Request.Host + "/images/Categories/contents/rich-text/" + photo.FileName;
-    //     //        }
-    //     //        catch (Exception ex)
-    //     //        {
-    //     //            BadRequest(ex.Message);
-    //     //        }
-    //     //    return Json(new { url = filepath });
-    //     //}
-    //     [HttpPost]
-    //     public async Task<JsonResult> UploadImage()
-    //     {
-    //         try
-    //         {
-    //             var uploads = Path.Combine(_env.WebRootPath, "images/contents");
-    //             var filePath = Path.Combine(uploads, "rich-text");
-    //             var urls = new Dictionary<string,string>();
-    //             var url = new List<string>();
-    //             var random =  Utilities.GetRandomInt(5);
-    //             //If folder of new key is not exist, create the folder.
-    //             if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-
-    //             foreach (var contentFile in Request.Form.Files)
-    //             {
-    //                 if (contentFile != null && contentFile.Length > 0)
-    //                 {
-    //                     await contentFile.CopyToAsync(new FileStream($"{filePath}\\{random}{contentFile.FileName}", FileMode.Create));
-    //                     urls.Add("url",$"https://{HttpContext.Request.Host}/images/contents/rich-text/{random}{contentFile.FileName}");
-    //                 }
-    //             }
-
-    //             return Json(urls);
-    //         }
-    //         catch (Exception e)
-    //         {
-    //             return Json(new { error = new { message = e.Message } });
-    //         }
-    //     }
-    //     // GET: Categories/Edit/5
-    //     public async Task<IActionResult> Edit(int? id)
-    //     {
-    //         if (id == null || _context.Categories == null)
-    //         {
-    //             return NotFound();
-    //         }
-
-    //         var post = await _context.Categories.FindAsync(id);
-    //         if (post == null)
-    //         {
-    //             return NotFound();
-    //         }
-    //         // ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "FullName", post.AccountId);
-    //         // ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatName", post.CatId);
-    //         return View(post);
-    //     }
-
-    //     // POST: Categories/Edit/5
-    //     // To protect from overposting attacks, enable the specific properties you want to bind to.
-    //     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //     [HttpPost]
-    //     [ValidateAntiForgeryToken]
-    //     public async Task<IActionResult> Edit(int id, [Bind("CatId,Title,Contents,CreatedAt,ShortContent,AccountId,CatId,Thumb")] Post post, Microsoft.AspNetCore.Http.IFormFile fThumb)
-    //     {
-    //         if (id != post.CatId)
-    //         {
-    //             return NotFound();
-    //         }
-
-    //         if (ModelState.IsValid)
-    //         {
-    //             string currentThumb = Request.Form["currentThumb"];
-    //             //var currentPost = await _context.Categories.FindAsync(id);
-    //             string pattern = "<img.*?>";
-    //             string replacement = "";
-    //             Regex rgx = new Regex(pattern);
-    //             if (post.Contents.Length <= 150)
-    //             {
-    //                 post.ShortContent = rgx.Replace(post.Contents, replacement) + "...";
-    //             }
-    //             else
-    //             {
-                   
-    //                 post.ShortContent = rgx.Replace(post.Contents, replacement).Substring(0, 150);
-    //             }
-
-    //             // post.ShortContent = post.Contents.Substring(0,150).Trim()+"...";
-    //             string oldThumb = currentThumb;
-    //             try
-    //             {
-                    
-    //                 if (post.Contents == null) post.Contents = "Bi loi";
-    //                 if (fThumb == null) post.Thumb = oldThumb;
-    //                      else   //if (fThumb != null) 
-    //                     {
-    //                         string extension = Path.GetExtension(fThumb.FileName);
-    //                         string image = Utilities.SEOUrl(post.Title) + extension;
-    //                         post.Thumb = await Utilities.UploadFile(fThumb, @"Categories", image.ToLower());
-    //                     }
-                    
-    //                 post.Alias = Utilities.SEOUrl(post.Title);
-    //                 post.CreatedAt = DateTime.Now;
-
-    //                 _context.Update(post);
-    //                 await _context.SaveChangesAsync();
-    //             }
-    //             catch (DbUpdateConcurrencyException)
-    //             {
-    //                 // if (!PostExists(post.CatId))
-    //                 // {
-    //                 //     return NotFound();
-    //                 // }
-    //                 // else
-    //                 // {
-    //                 //     throw;
-    //                 // }
-    //             }
-    //             return RedirectToAction(nameof(Index));
-    //         }
-    //         ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "FullName", post.AccountId);
-    //         ViewData["CatId"] = new SelectList(_context.Categories, "CatId", "CatName", post.CatId);
-    //         return View(post);
-    //     }
-
-    

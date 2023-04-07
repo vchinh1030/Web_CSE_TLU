@@ -1,0 +1,35 @@
+@model Web_CSE.Areas.Admin.Models.UpdateAccountViewModel;
+
+<h2>Update Account</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">@ViewBag.Success</div>
+}
+
+<form method="post" action="@Url.Action("UpdateAccount")">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <label for="email"  class="form-control">@Model.Account.Email</label>
+        <input  type="hidden" id="email" name="email" value="@Model.Account.Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" value="@Model.Account.FullName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="@Model.Account.Phone"  class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

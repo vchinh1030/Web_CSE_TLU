@@ -1,14 +1,22 @@
-﻿@model IEnumerable<Web_CSE.Models.Account>;
+﻿@model Web_CSE.Areas.Admin.Models.DashboardViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+@* <p>Xin chào, @ViewBag.CurrentUser.UserName</p> *@
 
+   @*if (Model.Notification != null)
+    {
+        <div class="alert alert-@Model.Notification.Type">@Model.Notification.Message</div>
+    }
+    else{
+        <h1>null</h1>
+    } *@
 <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Tài Khoản</h1>
                             <p>
-                                <a asp-action="Create" class="add-post"><i class="fa fa-plus" aria-hidden="true"></i>Thêm tài khoản </a>
+                                <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Thêm tài khoản </a>
                             </p>
                         </div>
                         <div class="card-body">
@@ -26,7 +34,7 @@
                                     </thead>
                             
                                     <tbody>
-                                        @foreach (var item in Model) {
+                                        @foreach (var item in Model.Accounts) {
                                             <tr>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.FullName)

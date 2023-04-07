@@ -10,7 +10,5 @@ bin/
 /.vs/Web_CSE_TLU/FileContentIndex
 .idea/
 /.idea
-appsettings.json
-Models/CnttCseContext.cs
 
 Web_CSE/.vs/Web_CSE/v17/.suo
