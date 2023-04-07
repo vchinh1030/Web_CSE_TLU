@@ -1,0 +1,44 @@
+@model Web_CSE.Areas.Admin.Models.UserViewModel;
+<div class="container rounded bg-white mt-5">
+        <div class="row">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" src="~/img/logo/undraw_profile.svg" width="90">
+                    <span class="font-weight-bold">@Model.Account.FullName</span>
+                    <span class="text-black-50">@Model.Account.Email</span>
+                      <h6 class="text-right">
+                        <button class="btn btn-primary profile-button" onclick="location.href='@Url.Action("ChangePassword", "Users")'">Thay đổi mật khẩu</button>
+                      </h6>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="text-right">Chỉnh Sửa Thông Tin</h6>
+                    </div>
+                <form method="post" action="@Url.Action("UpdateAccount")">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label  for="email">Email:</label>
+                        <label  for="email"  class="form-control col-md-6">@Model.Account.Email</label>
+                        <input   type="hidden" id="email" name="email" value="@Model.Account.Email" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" name="fullName" value="@Model.Account.FullName" class="form-control col-md-6" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" name="phone" value="@Model.Account.Phone"  class="form-control col-md-6" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
