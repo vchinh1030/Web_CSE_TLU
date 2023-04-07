@@ -12,3 +12,5 @@ bin/
 /.idea
 appsettings.json
 Models/CnttCseContext.cs
+
+Web_CSE/.vs/Web_CSE/v17/.suo
