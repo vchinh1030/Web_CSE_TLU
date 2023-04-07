@@ -21,5 +21,7 @@ public partial class Category
 
     public int? Levels { get; set; }
 
+    public virtual ICollection<Category> SubCategories { get; set; }
+    public virtual Category ParentCategory { get; set; }
     public virtual ICollection<Post> Posts { get; } = new List<Post>();
 }

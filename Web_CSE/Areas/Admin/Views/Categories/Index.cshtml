@@ -1,42 +1,78 @@
 @model IEnumerable<Web_CSE.Models.Category>
-@{
+
+    @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-}
-<div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Danh Mục</h1>
-                            <p>
-                                <a asp-action="Create" class="add-post"><i class="fa fa-plus" aria-hidden="true"></i>Thêm danh mục </a>
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Tên Danh Mục</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                            
-                                    <tbody>
-                                        @foreach (var item in Model) {
-                                            <tr>
-                                                <td>
-                                                    <a href="@item.Alias">@item.CatName</a>
-                                            
-                                                </td>
-                                                <td>
-                                                    <a asp-action="Edit" asp-route-id="@item.CatId" class="icon"><i class="fa-solid fa-pen-to-square"></i></a> |
-                                                    <a asp-action="Details" asp-route-id="@item.CatId"class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></a> |
-                                                    <a asp-action="Delete" asp-route-id="@item.CatId"class="icon"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                                </td>
-                                            </tr>
-                                        }   
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+    }
 
+    @if (User.Identity.IsAuthenticated)
+{
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="m-0 font-weight-bold text-primary" style="text-align: center;">Quản Lý Danh Mục</h1>
+            <p>
+                <a asp-action="Create" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm Danh Mục</a>
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Ảnh
+                            </th>
+                            <th>
+                                Tên Danh Mục
+                            </th>
+                            <th>Danh mục Cha</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            int i = 1;
+                        }
+                        @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                               @(i++)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.Thumb)*@
+                                <a asp-action="Details" asp-route-id="@item.CatId"> <img src="/images/posts/@item.Thumb" alt="@item.Thumb" style="max-width:100px" /></a>
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CatName)
+                            </td>
+                           <td>
+                                @if (item.ParentCategory != null)
+                                {
+                                    <span>@item.ParentCategory.CatName</span>
+                                }
+                                else
+                                {
+                                    <span>Danh mục gốc</span>
+                                }
+                                </td>
+                            <td>
+                                    <a asp-action="Edit" asp-route-id="@item.CatId" class="icon"><i class="fa-solid fa-pen-to-square"></i></a> |
+                                    <a asp-action="Details" asp-route-id="@item.CatId" class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></a> |
+                                    <a asp-action="Delete" asp-route-id="@item.CatId" class="icon"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+        }
+ 

@@ -23,6 +23,16 @@
         <dd class = "col-sm-10 posts-title">
             @Html.DisplayFor(model => model.CatName)
         </dd>
+
+        <dt class = "col-sm-2">
+            <label asp-for="CatName" class="control-label">Danh mục gốc</label>
+        </dt>
+        <dd class = "col-sm-10 posts-title">
+           <div class="form-group">
+                <p>@ViewBag.ParentCategoryName</p>
+            </div>
+        </dd>
+
         <dt class = "col-sm-2">
             <label asp-for="Thumb" class="control-label">Ảnh đại diện</label>
         </dt>
