@@ -173,6 +173,16 @@ namespace Web_CSE.Areas.Admin.Controllers
                 var urls = new Dictionary<string,string>();
                 var url = new List<string>();
                 var random =  Utilities.GetRandomInt(5);
+                var host = HttpContext.Request.Host.ToString();
+                if (!host.Contains("https://"))
+                {
+                    host = "https://";
+                }
+                else
+                {
+                    host = "";
+                }
+                
                 //If folder of new key is not exist, create the folder.
                 if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
 
@@ -181,7 +191,7 @@ namespace Web_CSE.Areas.Admin.Controllers
                     if (contentFile != null && contentFile.Length > 0)
                     {
                         await contentFile.CopyToAsync(new FileStream($"{filePath}\\{random}{contentFile.FileName}", FileMode.Create));
-                        urls.Add("url",$"https://{HttpContext.Request.Host}/images/contents/rich-text/{random}{contentFile.FileName}");
+                        urls.Add("url",$"{host}{HttpContext.Request.Host}/images/contents/rich-text/{random}{contentFile.FileName}");
                     }
                 }
 
