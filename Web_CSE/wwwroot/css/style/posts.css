@@ -1,5 +1,5 @@
 ﻿main {
-    min-height: 900px;
+    min-height: 600px;
     margin-bottom: 250px;
 }
 
@@ -96,4 +96,7 @@ main .add-post:hover, .edit-post:hover, .delete-post:hover, .details-post:hover,
 }
 .posts-title {
     max-width: 800px !important;
+}
+.icon{
+    font-size:24px;
 }

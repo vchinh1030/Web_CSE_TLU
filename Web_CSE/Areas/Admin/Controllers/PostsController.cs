@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Web_CSE.Helpers;
 using System.Security.Claims;
+using Web_CSE.Extensions;
+using Microsoft.Extensions.Hosting;
 
 namespace Web_CSE.Areas.Admin.Controllers
 {
@@ -36,7 +38,10 @@ namespace Web_CSE.Areas.Admin.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-                IQueryable<Post> posts;
+            if (User.IsInRole("Admin"))
+            {
+                // Lấy tất cả bài viết
+                    IQueryable<Post> posts;
 
                 if (User.IsInRole("Admin"))
                 {
@@ -55,8 +60,27 @@ namespace Web_CSE.Areas.Admin.Controllers
                     }
                      posts = _context.Posts.Where(p => p.AccountId == userId).Include(p => p.Account).Include(p => p.Cat);
                 }
-                  return View(await posts.ToListAsync());
+                      return View(await posts.ToListAsync());
 
+            }
+            else
+            {
+                // Lấy bài viết của người dùng đang đăng nhập
+
+                string accountIdString = HttpContext.Session.GetString("AccountId");
+                int accountId;
+                if (int.TryParse(accountIdString, out accountId))
+                {
+                    // Sử dụng accountId ở đây
+                    var cnttCseContext = _context.Posts.Where(p => p.AccountId == accountId).Include(p => p.Account).Include(p => p.Cat);
+                    return View(await cnttCseContext.ToListAsync());
+                }
+                      
+            }
+            
+            return View();
+            //var cnttCseContext = _context.Posts.Include(p => p.Account).Include(p => p.Cat);
+            //return View(await cnttCseContext.ToListAsync());
         }
 
         // GET: Posts/Details/5
@@ -106,8 +130,6 @@ namespace Web_CSE.Areas.Admin.Controllers
                     // Sử dụng accountId ở đây
                     post.AccountId = accountId;
                 }
-
-
 
                 string pattern = "<img.*?>";
                 string replacement = "";

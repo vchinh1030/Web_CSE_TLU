@@ -10,3 +10,7 @@ bin/
 /.vs/Web_CSE_TLU/FileContentIndex
 appsettings.json
 /Models/CnttCseContext.cs
+.idea/
+/.idea
+appsettings.json
+Models/CnttCseContext.cs

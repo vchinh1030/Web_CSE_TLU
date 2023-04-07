@@ -5,10 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Chi tiết bài viết</h1>
+<h1>Xóa danh mục</h1>
 
 <div>
-    <h4>Bài viết</h4>
+    <h4>Bạn có chắc chắn muốn xóa?</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -35,7 +35,7 @@
 <div>
     <form asp-action="Delete" class="post-index">
          <input type="hidden" asp-for="CatId" />
-        <input type="submit" value="Xóa" class="btn btn-danger" />
-        <a asp-action="Index" class="back-to-list"><i class="fa fa-arrow-left" aria-hidden="true"></i>Trở lại</a>
+        <input type="submit" value="Xóa danh mục" class="btn btn-danger" />
+        <a asp-action="Index" class="back-to-list"><i class="fa fa-arrow-left" aria-hidden="true"></i>Quay lại</a>
     </form>
 </div>
