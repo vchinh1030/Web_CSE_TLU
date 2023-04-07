@@ -9,19 +9,19 @@ using Web_CSE.Models;
 
 namespace Web_CSE.Controllers
 {
-    public class GreetingsController : Controller
+    public class SRLabsController : Controller
     {
         private readonly CnttCseContext _context;
 
-        public GreetingsController(CnttCseContext context)
+        public SRLabsController(CnttCseContext context)
         {
             _context = context;
         }
 
-        // GET: Greetings
+        // GET: SRLabs
         public async Task<IActionResult> Index()
         {
-            var cnttCseContext = _context.Posts.Where(p => p.CatId == 13);
+            var cnttCseContext = _context.Posts.Where(p => p.CatId == 14);
             return View(await cnttCseContext.ToListAsync());
         }
     }
