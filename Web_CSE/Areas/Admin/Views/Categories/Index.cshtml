@@ -15,18 +15,32 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
+                                            <th>Ảnh</th>
                                             <th>Tên Danh Mục</th>
+                                            <th>Tiêu đề</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                             
                                     <tbody>
+                                        @{int i = 1;}
                                         @foreach (var item in Model) {
                                             <tr>
-                                                <td>
-                                                    <a href="@item.Alias">@item.CatName</a>
-                                            
-                                                </td>
+                                                  <td>
+                                                    @(i++)
+                                                    </td>
+                                                    <td>
+                                                        @*@Html.DisplayFor(modelItem => item.Thumb)*@
+                                                        <a asp-action="Details" asp-route-id="@item.CatId"> <img src="/images/posts/@item.Thumb" alt="@item.Thumb" style="max-width:100px" /></a>
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CatName)
+                                                    </td>
+                                                     <td>
+                                                        @Html.DisplayFor(modelItem => item.Title)
+                                                    </td>
                                                 <td>
                                                     <a asp-action="Edit" asp-route-id="@item.CatId" class="icon"><i class="fa-solid fa-pen-to-square"></i></a> |
                                                     <a asp-action="Details" asp-route-id="@item.CatId"class="icon"><i class="fa fa-info-circle" aria-hidden="true"></i></a> |

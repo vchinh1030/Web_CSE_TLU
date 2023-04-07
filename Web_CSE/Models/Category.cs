@@ -22,4 +22,5 @@ public partial class Category
     public int? Levels { get; set; }
 
     public virtual ICollection<Post> Posts { get; } = new List<Post>();
+
 }
