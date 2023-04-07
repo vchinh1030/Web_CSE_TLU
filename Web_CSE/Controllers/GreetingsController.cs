@@ -21,7 +21,7 @@ namespace Web_CSE.Controllers
         // GET: Greetings
         public async Task<IActionResult> Index()
         {
-            var cnttCseContext = _context.Posts.Where(p => p.CatId == 14);
+            var cnttCseContext = _context.Posts.Where(p => p.CatId == 13);
             return View(await cnttCseContext.ToListAsync());
         }
     }
